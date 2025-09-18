@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+@import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
+@import "tailwindcss";
+
+body{
+    font-family: "MuseoModerno", sans-serif !important;
+    /* background-color: #0d192b; 
+    */
+    background-color: #030b13;
+    color: white;
+}

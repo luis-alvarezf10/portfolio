@@ -1,0 +1,26 @@
+---
+import Icons from './Icons.astro';
+
+const toolsData = [
+  { name: "Vercel", icon: "vercel"},
+  { name: "Windsurf", icon: "windsurf"},
+  { name: "Opera", icon: "opera"},
+  { name: "Git", icon: "git" },
+  { name: "GitHub", icon: "github" },
+  { name: "Figma", icon: "figma" },
+]
+---
+
+<section class="flex flex-col md:flex-row md:items-center justify-between w-[80%] md:w-[60%] mx-auto gap-5">
+  <h2 class="font-bold text-4xl">Herramientas</h2>
+  <div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 cursor-default">
+      {toolsData.map(tool => (
+        <div class="p-5 rounded-lg flex flex-col items-center gap-2 hover:scale-105 transition-transform text-gray-400 hover:text-white">
+          <Icons name={tool.icon} class="w-8 h-8 text-[#07f9a2] fill-current" />
+          <span class="font-semibold">{tool.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

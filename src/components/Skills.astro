@@ -1,0 +1,257 @@
+---
+import Icons from './Icons.astro';
+
+  // Mapeo de colores para cada habilidad
+  const skillColors = {
+    'C++': 'group-hover:text-[#00599C]',
+    'C#': 'group-hover:text-[#9B4F96]',
+    'Visual Basic': 'group-hover:text-[#512BD4]',
+    'HTML': 'group-hover:text-[#E34F26]',
+    'CSS': 'group-hover:text-[#663399]',
+    'JavaScript': 'group-hover:text-[#F7DF1E]',
+    'TypeScript': 'group-hover:text-[#3178C6]',
+    'Python': 'group-hover:text-[#3776AB]',
+    'Dart': 'group-hover:text-[#0175C2]',
+    'Bootstrap': 'group-hover:text-[#7952B3]',
+    'Tailwind': 'group-hover:text-[#06B6D4]',
+    'Material UI': 'group-hover:text-[#007FFF]',
+    'React': 'group-hover:text-[#61DAFB]',
+    'Astro': 'group-hover:text-[#BC52EE]',
+    'Vite': 'group-hover:text-[#646CFF]',
+    'Jinja': 'group-hover:text-[#7E0C1B]',
+    'Django': 'group-hover:text-[#092E20]',
+    'Supabase': 'group-hover:text-[#3FCF8E]',
+    '.NET': 'group-hover:text-[#512BD4]',
+    'React Router': 'group-hover:text-[#CA4245]',
+    'MySQL': 'group-hover:text-[#4479A1]',
+    'SQLite': 'group-hover:text-[#003B57]',
+    'JSON': 'group-hover:text-[#000000]'
+  };
+
+  const skillsData = {
+    lenguajes: [
+      { name: "C++", icon: "cpp" },
+      { name: "C#", icon: "csharp" },
+      { name: "Visual Basic", icon: "vb" },
+      { name: "HTML", icon: "html5" },
+      { name: "CSS", icon: "css3" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Python", icon: "python" },
+    ],
+    frontend: [
+      { name: "React", icon: "react" },
+      { name: "Astro", icon: "astro" },
+      { name: "Tailwind", icon: "tailwind" },
+      { name: "Bootstrap", icon: "bootstrap" },
+      { name: "Material UI", icon: "mui" },
+      { name: "Vite", icon: "vite" }
+    ],
+    backend: [
+      { name: "Django", icon: "django" },
+      { name: "Jinja", icon: "jinja" },
+      { name: "Supabase", icon: "supabase" },
+      { name: ".NET", icon: "dotnet" },
+      { name: "React Router", icon: "reactrouter"}
+    ],
+    databases: [
+      { name: "MySQL", icon: "mysql" },
+      { name: "Supabase", icon: "supabase" }, 
+      { name: "SQLite", icon: "sqlite"},
+      { name: "JSON", icon: "json"}
+    ]
+  };
+---
+
+<section class="flex flex-col items-center justify-center">
+  <h2 class="w-[80%] md:w-[60%] font-bold text-4xl">Skills</h2>
+  <div class="w-[80%] md:w-[60%] flex flex-col gap-3">
+    
+    <!-- Button Group -->
+    <div class="w-full">
+      <div class="relative inline-flex flex-wrap justify-center gap-2 p-1 bg-white/5 border border-white/10 rounded-xl w-full mx-auto">
+        <button 
+          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-lg transition-all duration-200 w-full sm:w-auto bg-white/5 hover:bg-white/10 active:scale-95 active" 
+          data-category="lenguajes"
+        >
+          <span class="flex items-center justify-center gap-2">
+            Lenguajes
+          </span>
+        </button>
+        <button 
+          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-lg transition-all duration-200 w-full sm:w-auto bg-white/5 hover:bg-white/10 active:scale-95" 
+          data-category="frontend"
+        >
+          <span class="flex items-center justify-center gap-2">
+            Frontend
+          </span>
+        </button>
+        <button 
+          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-lg transition-all duration-200 w-full sm:w-auto bg-white/5 hover:bg-white/10 active:scale-95" 
+          data-category="backend"
+        >
+          <span class="flex items-center justify-center gap-2">
+            Backend
+          </span>
+        </button>
+        <button 
+          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-lg transition-all duration-200 w-full sm:w-auto bg-white/5 hover:bg-white/10 active:scale-95" 
+          data-category="databases"
+        >
+          <span class="flex items-center justify-center gap-2">
+            Bases de Datos
+          </span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="skills-grid">
+      {skillsData.lenguajes.map(skill => (
+        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300" data-category="lenguajes">
+          <Icons 
+            name={skill.icon} 
+            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || ''}`} 
+          />
+          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
+        </div>
+      ))}
+      {skillsData.frontend.map(skill => (
+        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 hidden" data-category="frontend">
+          <Icons 
+            name={skill.icon} 
+            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || 'group-hover:text-[#07f9a2]'}`} 
+          />
+          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
+        </div>
+      ))}
+      {skillsData.backend.map(skill => (
+        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 hidden" data-category="backend">
+          <Icons 
+            name={skill.icon} 
+            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || 'group-hover:text-[#07f9a2]'}`} 
+          />
+          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
+        </div>
+      ))}
+      {skillsData.databases.map(skill => (
+        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 hidden" data-category="databases">
+          <Icons 
+            name={skill.icon} 
+            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || 'group-hover:text-[#07f9a2]'}`} 
+          />
+          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll('.skill-btn');
+  const skillItems = document.querySelectorAll('.skill-item');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      // Update active button
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Show/hide skills
+      skillItems.forEach(item => {
+        if (item.getAttribute('data-category') === category) {
+          item.classList.remove('hidden');
+          item.classList.add('flex');
+        } else {
+          item.classList.add('hidden');
+          item.classList.remove('flex');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .skill-btn {
+    color: #9ca3af;
+  }
+  
+  .skill-btn.active {
+    background-color: #07f9a2;
+    color: #030b13;
+    font-weight: 600;
+  }
+  
+  .skill-btn:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .vb-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #00fdaa;
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: #030b13;
+    transition: all 0.3s ease;
+  }
+  
+  .group:hover .vb-icon {
+    color: #512BD4 !important;
+    filter: drop-shadow(0 0 15px rgba(81, 43, 212, 0.8)) drop-shadow(0 0 25px rgba(81, 43, 212, 0.6));
+  }
+  
+  /* Gradiente sutil dentro de la tarjeta */
+  .skill-item {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    color: inherit;
+  }
+  
+  .skill-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      rgba(209, 213, 219, 0.5) 0%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .skill-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Aplicar el gradiente con el color del ícono */
+  .skill-item:hover::before {
+    opacity: 0.2;
+    background: linear-gradient(
+      135deg,
+      currentColor 0%,
+      transparent 100%
+    );
+  }
+  
+  /* Asegurar que el contenido esté por encima del gradiente */
+  .skill-item > * {
+    position: relative;
+    z-index: 1;
+  }
+</style>

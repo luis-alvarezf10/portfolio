@@ -1,0 +1,139 @@
+---
+import foto from "../assets/gemini-me.png"
+
+const estudios = [
+  {
+    periodo: "marzo 2023 - marzo 2024",
+    titulo: "Desarrollo web Full Stack",
+    institucion: "UneWeb",
+    url: "https://www.uneweb.edu.ve"
+  },
+  {
+    periodo: "octubre 2024 - agosto 2025",
+    titulo: "Habilidades de Inglés",
+    institucion: "Instituto de Idiomas TCEP",
+    url: "https://www.instagram.com/ctepven"
+  },
+  {
+    periodo: "febrero 2022 - actualidad",
+    titulo: "Ingeniería de Sistemas",
+    institucion: "Universidad Santa María",
+    url: "https://usm.edu.ve"
+  },
+  {
+    periodo: "julio 2025 - actualidad",
+    titulo: "Desarrollo Web Full Stack",
+    institucion: "Adakademy",
+    url: "https://adakademy.com"
+  }
+]
+
+const valores = [
+  { nombre: "Comunicación", icono: "fa-solid fa-comments" },
+  { nombre: "Paciencia", icono: "fa-solid fa-seedling" },
+  { nombre: "Creatividad", icono: "fa-solid fa-lightbulb" }
+]
+
+const bentoSections = [
+  {
+    id: "profile",
+    gridClasses: "md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-4",
+    title: "Luis Álvarez Franceschi",
+    type: "profile"
+  },
+  {
+    id: "estudios",
+    gridClasses: "md:col-start-4 md:col-end-6 md:row-start-1 md:row-end-6",
+    title: "Estudios y certificaciones",
+    icon: "hn hn-star-solid",
+    type: "timeline"
+  },
+  {
+    id: "valores",
+    gridClasses: "md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-4",
+    title: "Valores",
+    icon: "hn hn-bolt-solid",
+    type: "values"
+  },
+  {
+    id: "info",
+    gridClasses: "md:col-start-1 md:col-end-4 md:row-start-4 md:row-end-6",
+    title: "info",
+    icon: "hn hn-info-circle-solid",
+    content: "Soy estudiante de Ingeniería de sistemas, con finalización estimada en febrero de 2027, me gusta el desarrollo de aplicaciones móviles y páginas web.",
+    type: "info"
+  }
+]
+---
+
+<section class="min-h-[100dvh] flex flex-col items-center justify-center">
+    <h2 class="w-[80%] md:w-[60%] font-bold  text-4xl">Sobre mí</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 md:grid-rows-5 w-[80%] md:w-[60%] mx-auto">
+    {bentoSections.map(section => (
+      <div class={`bg-white/5 border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.25)] p-4 m-1 rounded-lg hover:scale-102 duration-200 ${section.gridClasses} ${
+        section.type === 'profile' ? 'flex flex-col justify-center items-center gap-4' :
+        section.type === 'timeline' ? 'flex flex-col justify-center items-center gap-1 md:items-start' :
+        section.type === 'values' ? 'flex flex-col justify-center items-center gap-6 md:items-start' :
+        'flex flex-col items-center gap-3 justify-center text-center md:text-left md:items-start'
+      }`}>
+        
+        {section.type === 'profile' && (
+          <>
+            <img src={foto.src} alt="" class="aspect-square object-cover size-60 rounded-lg" />
+            <h2 class="font-bold text-2xl md:text-xl text-[#07f9a2] italic">{section.title}</h2>
+          </>
+        )}
+        
+        {section.type === 'timeline' && (
+          <>
+            <h2 class="text-xl font-bold flex items-center gap-2">
+              <i class={`${section.icon} text-[#07f9a2]`}></i> {section.title}
+            </h2>
+            <div>
+              <ol class="relative border-s border-gray-200 dark:border-gray-700">
+                {estudios.map((estudio, index) => (
+                  <li class={`ms-4 ${index < estudios.length - 1 ? 'mb-10' : ''}`}>
+                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-500">{estudio.periodo}</time>
+                    <h3 class="text-lg font-semibold">{estudio.titulo}</h3>
+                    <a href={estudio.url} target="_blank" class="text-base font-normal text-gray-500 dark:text-gray-400 flex items-center gap-5">
+                      {estudio.institucion}
+                      <i class="hn hn-external-link"></i>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </>
+        )}
+        
+        {section.type === 'values' && (
+          <>
+            <h2 class="text-xl font-bold">
+              <i class={`${section.icon} text-[#07f9a2]`}></i>
+              {section.title}
+            </h2>
+            <ol class="text-md text-gray-400 flex flex-col items-center w-full gap-2 cursor-default">
+              {valores.map(valor => (
+                <li class="flex flex-col items-center gap-1 bg-black/20 w-1/2 md:w-full border border-white/15 rounded-lg p-1">
+                  <i class={valor.icono}></i>
+                  {valor.nombre}
+                </li>
+              ))}
+            </ol>
+          </>
+        )}
+        
+        {section.type === 'info' && (
+          <>
+            <h2 class="text-xl font-bold flex justify-center items-center md:justify-start gap-2">
+              <i class={`${section.icon} text-[#07f9a2]`}></i>{section.title}
+            </h2>
+            <span class="text-gray-400">{section.content}</span>
+          </>
+        )}
+        
+      </div>
+    ))}
+  </div>
+</section>

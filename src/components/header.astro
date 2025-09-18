@@ -1,0 +1,34 @@
+---
+import logo from "../assets/LA.svg";
+
+const links = [
+  { name: "Inicio", href: "/" },
+  { name: "Sobre mí", href: "/about" },
+  { name: "Proyectos", href: "/projects" },
+];
+---
+
+<header class="flex justify-between items-center h-15  md:w-[60%] mx-auto">
+  <div class="flex gap-2">
+    <img src={logo.src} alt="logo de Luis Alvarez" width="25" />
+    <span class="text-xl font-semibold flex items-end"> dev </span>
+  </div>
+  <nav class="flex gap-5">
+    <ul class="flex gap-5">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="font-semibold">
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+          <a href="#" class="bg-white text-[#030b13] py-1 px-4 rounded-xl font-semibold shadow-white/40 hover:shadow-md transition transform hover:scale-105 italic">Contáctame!</a>
+      </li>
+    </ul>
+
+
+  </nav>
+</header>

@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import profile from '../assets/foto-carnet.jpg'
+import AboutSection from '../components/AboutSection.astro'
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    href: "https://github.com/luis-alvarezf10",
+    icon: "hn hn-github"
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/luis-%C3%A1lvarez-franceschi-a2080b225/",
+    icon: "hn hn-linkedin"
+  },
+  {
+    name: "X",
+    href: "https://x.com/luis_alvarezf10",
+    icon: "hn hn-x"
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/luis_alvarezf10",
+    icon: "hn hn-instagram"
+  }
+];
+---
+
+<Layout title="Luis Alvarez - Ingeniero de sistemas y desarollador web"
+description="Contrata a Luis Alvarez para gestionar tu ideas. Desarrollo movil y web. ">
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute top-[10%] left-0 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))] -translate-x-1/2"></div>
+    <div class="absolute top-[40%] right-0 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))] translate-x-1/2"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+  </div>
+  <main class="min-h-[100dvh] flex flex-col items-start justify-center gap-6 md:gap-10 w-[80%] md:w-[60%] mx-auto py-4 relative">
+		<div class="flex flex-col md:flex-row items-start md:items-center gap-4 justify-between w-full">
+			<div>
+				<!-- <img src={profile.src} alt="foto Luis Alvarez" class="w-16 h-16 rounded-full object-cover aspect-square"> -->
+				<h1 class=" text-3xl md:text-5xl font-bold">Hola! Soy Luis Álvarez</h1>
+			</div>
+			<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="35" class="hidden md:inline">
+			<span class="bg-white/5 border border-white/10 py-1 p-5 rounded-xl text-center cursor-default">Disponible</span>
+
+		</div>
+		<p class="text-xl">Estudiante de <span class="text-[#07f9a2] italic">ingenería de sistemas</span>, apasionado en el desarrollo software.</p>
+		<div class="flex flex-col md:flex-row justify-center md:justify-between items-start md:items-center gap-5 md:w-full">
+			<ul class="flex  items-center gap-4">
+			{
+				socialLinks.map(link => (
+				<li>
+					<a href={link.href} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:scale-110 transition bg-white/5 border border-white/10 p-2 rounded-xl hover:!text-[#07f9a2]">
+					<i class={`${link.icon} text-2xl`}></i>
+					<span class="hidden md:inline">{link.name}</span>
+					</a>
+				</li>
+				))
+			}
+			</ul>
+			<button class="button-hover bg-[#07f9a2] py-2 px-10 flex items-center gap-5 text-[#030b13] font-bold cursor-pointer rounded-xl w-full md:w-auto justify-center relative overflow-hidden">
+				<span class="relative z-0">Descargar CV</span>
+				<i class="hn hn-download-solid relative"></i>
+			</button>
+		</div>
+		<div class="flex-shrink-0 w-full flex justify-center items-center mt-4">
+			<a href="#about" class="text-center flex flex-col items-center gap-2">
+				<span>Acerca de mi</span>
+				<i class="hn hn-arrow-down-solid animate-bounceY"></i>
+			</a>
+		</div>
+	</main>
+	<div id="about">
+		<AboutSection />
+	</div>
+</Layout>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@keyframes bounceY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+.animate-bounceY {
+  animation: bounceY 1.5s ease-in-out infinite;
+}
+.button-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-hover span {
+  transition: opacity 0.4s ease;
+}
+
+.button-hover i {
+  position: absolute;
+  left: 100%;                /* empieza fuera del botón, a la derecha */
+  top: 50%;
+  transform: translateY(-50%); /* centrado vertical */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.2em;
+}
+
+.button-hover:hover span {
+  opacity: 0;
+}
+
+.button-hover:hover i {
+  left: 50%;                         /* se mueve al centro */
+  transform: translate(-50%, -50%) scale(1.3); /* centrado + zoom */
+  z-index: 10;
+}
+
+</style>
