@@ -2,33 +2,60 @@
 import logo from "../assets/LA.svg";
 
 const links = [
-  { name: "Inicio", href: "/" },
-  { name: "Sobre mí", href: "/about" },
-  { name: "Proyectos", href: "/projects" },
+  { name: "Inicio", href: "#home" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Tecnologías", href: "#technologies" },
+  { name: "Proyectos", href: "#projects" },
 ];
 ---
 
-<header class="flex justify-between items-center h-15  md:w-[60%] mx-auto">
+<header class="flex justify-between items-center h-15 md:w-[60%] mx-auto sticky top-0 bg-[#030b13]/50 z-50 py-4">
   <div class="flex gap-2">
-    <img src={logo.src} alt="logo de Luis Alvarez" width="25" />
-    <span class="text-xl font-semibold flex items-end"> dev </span>
+    <a href="#home" class="flex items-center gap-2">
+      <img src={logo.src} alt="logo de Luis Alvarez" width="25" />
+      <span class="text-xl font-semibold">dev</span>
+    </a>
   </div>
   <nav class="flex gap-5">
     <ul class="flex gap-5">
       {
         links.map((link) => (
           <li>
-            <a href={link.href} class="font-semibold">
+            <a 
+              href={link.href}
+              class="font-semibold hover:text-gray-300 transition-colors"
+              data-scroll-to={link.href.substring(1)}
+            >
               {link.name}
             </a>
           </li>
         ))
       }
       <li>
-          <a href="#" class="bg-white text-[#030b13] py-1 px-4 rounded-xl font-semibold shadow-white/40 hover:shadow-md transition transform hover:scale-105 italic">Contáctame!</a>
+          <a href="#contact" class="bg-white text-[#030b13] py-1 px-4 rounded-xl font-semibold shadow-white/40 hover:shadow-md transition transform hover:scale-105 italic">Contáctame!</a>
       </li>
     </ul>
-
-
   </nav>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.addEventListener('DOMContentLoaded', () => {
+      const anchors = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+      anchors.forEach((anchor) => {
+        anchor.addEventListener('click', (e: MouseEvent) => {
+          e.preventDefault();
+          const targetId = anchor.getAttribute('href');
+          if (!targetId || targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
 </header>

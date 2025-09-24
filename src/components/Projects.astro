@@ -1,0 +1,120 @@
+---
+const projectsData = [
+  { name: "Axiology Document Manager", 
+    description: "Sistema automatizado de gestión de documentos legales.",
+    technologies: "Python, Flet, PyPDF2",
+    image: "/images/projects/adm.png",
+    link: "#"
+  },
+  { name: "Pow Fitness", 
+    description: "Pagina web de un gimnasio.",
+    technologies: "React, Tailwind CSS",
+    image: "/images/projects/pow-page.png",
+    link: "#"
+  },
+  { name: "Nex Technology", 
+    description: "Pagina web de una empresa de startup digital.",
+    technologies: "React, Tailwind CSS, Vercel",
+    image: "/images/projects/nex.png",
+    link: "https://nextechnologyve.vercel.app/"
+  },
+]
+---
+
+<style>
+  .project-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #f5f5f5;
+    backface-visibility: hidden; /* Mejora el rendimiento en algunos navegadores */
+    transform: translateZ(0); /* Acelera la renderización */
+  }
+  
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .project-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 30%, rgba(0, 0, 0, 0.95) 80%);
+    padding: 1.5rem;
+    color: #ffffff;
+    transform: translateY(100%);
+    will-change: transform; /* Mejora el rendimiento de la animación */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Timing function más suave */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Eliminamos el backdrop-filter que puede causar lag */
+  }
+  
+  .project-card:hover .project-overlay {
+    transform: translateY(0);
+  }
+  
+  .project-link {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    transition: all 0.3s ease;
+  }
+  
+  .project-link:hover {
+    background: white;
+    transform: scale(1.1);
+  }
+</style>
+
+<section id="projects" class="mx-auto w-[80%] md:w-[60%] min-h-screen flex flex-col justify-center py-12 px-4">
+    <h2 class="w-full font-bold text-4xl">Mi Portafolio</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {projectsData.map((project, index) => (
+            <div 
+              class="project-card" 
+              style={`background-image: url('${project.image}');`}
+            >
+              {project.link && (
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="project-link"
+                aria-label={`Ver proyecto ${project.name}`}
+              >
+                <i class="hn hn-external-link"></i>
+              </a>
+              )}
+              <div class="project-overlay">
+                <div class="p-4">
+                  <h3 class="text-lg font-bold mb-2 text-white">{project.name}</h3>
+                  <p class="text-sm text-gray-200 mb-3">{project.description}</p>
+                  <p class="text-xs text-gray-300 font-mono bg-white/10 px-2 py-1 rounded-md inline-block">{project.technologies}</p>
+                </div>
+              </div>
+            </div>
+        ))}
+    </div>
+</section>

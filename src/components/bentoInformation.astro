@@ -129,7 +129,11 @@ const bentoSections = [
             <h2 class="text-xl font-bold flex justify-center items-center md:justify-start gap-2">
               <i class={`${section.icon} text-[#07f9a2]`}></i>{section.title}
             </h2>
-            <span class="text-gray-400">{section.content}</span>
+            <p class="text-sm md:text-base ">{section.content}</p>
+            <a href="#technologies" class="bg-black/20 border border-white/15 text-gray-400 px-2 py-1 text-sm rounded-lg transition-colors duration-200 flex items-center gap-2 hover:bg-white/5 hover:text-white">
+              <i class="hn hn-ellipses-horizontal"></i>
+              Tecnologías
+            </a>
           </>
         )}
         
