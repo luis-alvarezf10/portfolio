@@ -10,52 +10,104 @@ const links = [
 ---
 
 <header class="flex justify-between items-center h-15 w-[90%] md:w-[60%] mx-auto sticky px-4 top-2 z-50 py-4 border border-white/10 rounded-xl bg-[#010b13]/80 backdrop-blur-lg">
+  <!-- Logo -->
   <div class="flex gap-2">
     <a href="#home" class="flex items-center gap-2">
       <img src={logo.src} alt="logo de Luis Alvarez" width="25" />
       <span class="text-xl font-semibold">dev</span>
     </a>
   </div>
-  <nav class="flex gap-5">
-    <ul class="flex gap-5">
-      {
-        links.map((link) => (
-          <li>
-            <a 
-              href={link.href}
-              class="font-semibold hover:text-gray-300 transition-colors"
-              data-scroll-to={link.href.substring(1)}
-            >
-              {link.name}
-            </a>
-          </li>
-        ))
-      }
+
+  <!-- Menú en escritorio -->
+  <nav class="hidden md:flex gap-5">
+    <ul class="flex gap-5 items-center">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="font-semibold hover:text-gray-300 transition-colors"
+          >
+            {link.name}
+          </a>
+        </li>
+      ))}
       <li>
-          <a href="#contact" class="bg-white text-[#030b13] py-1 px-4 rounded-xl font-semibold shadow-white/40 hover:shadow-md transition transform hover:scale-105 italic">Contáctame!</a>
+        <a
+          href="#contact"
+          class="text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl py-1 px-4 font-semibold italic"
+        >
+          Contáctame!
+        </a>
       </li>
     </ul>
   </nav>
 
-  <script>
-    // Smooth scroll for anchor links
-    document.addEventListener('DOMContentLoaded', () => {
-      const anchors = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
-      anchors.forEach((anchor) => {
-        anchor.addEventListener('click', (e: MouseEvent) => {
-          e.preventDefault();
-          const targetId = anchor.getAttribute('href');
-          if (!targetId || targetId === '#') return;
-          
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-    });
-  </script>
+  <!-- Botón hamburguesa -->
+  <button
+    id="menu-btn"
+    class="md:hidden text-2xl text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl flex items-center justify-center w-10 h-10 focus:outline-none"
+    aria-label="Abrir menú"
+  >
+    <i class="hn hn-bars-solid"></i>
+  </button>
 </header>
+
+<!-- Drawer lateral -->
+<div
+  id="mobile-menu"
+  class="fixed top-0 right-0 h-screen w-64 bg-[#010b13]/95 border-l border-white/10 shadow-lg p-6 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden"
+>
+  <!-- Botón cerrar -->
+  <button id="close-btn" class="text-2xl text-[#07f9a2] w-10 h-10 flex items-center justify-center absolute top-4 right-13">
+    <i class="hn hn-times-solid"></i>
+  </button>
+
+  <ul class="flex flex-col gap-6 mt-12">
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          class="font-semibold text-lg hover:text-gray-300 transition-colors"
+        >
+          {link.name}
+        </a>
+      </li>
+    ))}
+    <li>
+      <a
+        href="#contact"
+        class="text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl py-2 px-6 font-semibold shadow-white/40 hover:shadow-md transition transform hover:scale-105 italic"
+      >
+        Contáctame!
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Script para toggle + smooth scroll -->
+<script is:inline>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("close-btn");
+
+  const openMenu = () => mobileMenu.classList.remove("translate-x-full");
+  const closeMenu = () => mobileMenu.classList.add("translate-x-full");
+
+  menuBtn.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
+
+  // Smooth scroll + cerrar drawer
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = anchor.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      closeMenu();
+    });
+  });
+</script>
