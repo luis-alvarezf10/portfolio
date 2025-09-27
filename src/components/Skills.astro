@@ -25,7 +25,10 @@ import Icons from './Icons.astro';
     'React Router': 'group-hover:text-[#CA4245]',
     'MySQL': 'group-hover:text-[#4479A1]',
     'SQLite': 'group-hover:text-[#003B57]',
-    'JSON': 'group-hover:text-[#000000]'
+    'JSON': 'group-hover:text-[#000000]',
+    'Flet': 'group-hover:text-[#EE3167]',
+    'Flutter': 'group-hover:text-[#02569B]',
+    'WinForms': 'group-hover:text-[#07f9a2]',
   };
 
   const skillsData = {
@@ -38,14 +41,18 @@ import Icons from './Icons.astro';
       { name: "JavaScript", icon: "javascript" },
       { name: "TypeScript", icon: "typescript" },
       { name: "Python", icon: "python" },
+      { name: "Dart", icon: "dart" },
     ],
     frontend: [
+      { name: "WinForms", icon: "code" },
       { name: "Bootstrap", icon: "bootstrap" },
       { name: "React", icon: "react" },
       { name: "Material UI", icon: "mui" },
       { name: "Vite", icon: "vite" },
       { name: "Tailwind", icon: "tailwind" },
       { name: "Astro", icon: "astro" },
+      { name: "Flutter", icon: "flutter" },
+      { name: "Flet", icon: "flet" },
     ],
     backend: [
       { name: ".NET", icon: "dotnet" },
@@ -107,7 +114,7 @@ import Icons from './Icons.astro';
 
 
     <!-- Skills Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 cursor-default" id="skills-grid">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 cursor-default" id="skills-grid">
       {skillsData.lenguajes.map(skill => (
         <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300" data-category="lenguajes">
           <Icons 
