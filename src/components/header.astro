@@ -25,9 +25,12 @@ const links = [
         <li>
           <a
             href={link.href}
-            class="font-semibold hover:text-gray-300 transition-colors"
+            class="font-semibold hover:text-gray-300 transition-colors relative group"
+            data-section={link.href.substring(1)}
           >
             {link.name}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#07f9a2] transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#07f9a2] transition-all duration-300 active-section"></span>
           </a>
         </li>
       ))}
@@ -87,27 +90,119 @@ const links = [
 <!-- Script para toggle + smooth scroll -->
 <script is:inline>
   const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
   const closeBtn = document.getElementById("close-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
 
   const openMenu = () => mobileMenu.classList.remove("translate-x-full");
   const closeMenu = () => mobileMenu.classList.add("translate-x-full");
 
   menuBtn.addEventListener("click", openMenu);
   closeBtn.addEventListener("click", closeMenu);
+  document.addEventListener('DOMContentLoaded', () => {
+    updateActiveSection();
+    
+    // Agregar un pequeño retraso para asegurar que el DOM esté completamente cargado
+    setTimeout(updateActiveSection, 100);
+  });
+  
+  // Ejecutar al hacer scroll con debounce para mejorar rendimiento
+  let isScrolling;
+  window.addEventListener('scroll', () => {
+    window.clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      updateActiveSection();
+    }, 50);
+  }, false);
+
+  function updateActiveSection() {
+    // Obtener todas las secciones con ID
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    
+    // Si no hay secciones, salir
+    if (sections.length === 0) return;
+    
+    // Ocultar todos los indicadores
+    document.querySelectorAll('.active-section').forEach(indicator => {
+      indicator.style.width = '0%';
+    });
+    
+    // Si estamos en la parte superior de la página, activar el enlace de inicio
+    if (window.scrollY < 100) {
+      const homeLink = document.querySelector('a[data-section="home"]');
+      if (homeLink) {
+        const activeIndicator = homeLink.querySelector('.active-section');
+        if (activeIndicator) {
+          activeIndicator.style.width = '100%';
+        }
+      }
+      return;
+    }
+    
+    // Encontrar la sección más cercana al centro de la ventana
+    const viewportCenter = window.scrollY + (window.innerHeight / 2);
+    let closestSection = null;
+    let minDistance = Infinity;
+    
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionMiddle = window.scrollY + rect.top + (rect.height / 2);
+      const distance = Math.abs(viewportCenter - sectionMiddle);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestSection = section;
+      }
+    });
+    
+    // Si encontramos una sección cercana, activar su indicador
+    if (closestSection) {
+      const sectionId = closestSection.getAttribute('id');
+      if (sectionId) {
+        const menuLink = document.querySelector(`a[data-section="${sectionId}"]`);
+        if (menuLink) {
+          const activeIndicator = menuLink.querySelector('.active-section');
+          if (activeIndicator) {
+            activeIndicator.style.width = '100%';
+          }
+        }
+      }
+    }
+    
+    // Activar solo la sección más cercana
+    if (closestSection) {
+      const sectionId = closestSection.getAttribute('id');
+      const menuLink = document.querySelector(`a[data-section="${sectionId}"]`);
+      
+      if (menuLink) {
+        const activeIndicator = menuLink.querySelector('.active-section');
+        activeIndicator.style.width = '100%';
+      }
+    }
+  }
 
   // Smooth scroll + cerrar drawer
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", (e) => {
       e.preventDefault();
       const targetId = anchor.getAttribute("href");
-      if (!targetId || targetId === "#") return;
+      
+      // Manejar el caso especial del inicio
+      if (targetId === "#" || targetId === "#home") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+        closeMenu();
+        return;
+      }
+      
+      if (!targetId) return;
 
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        closeMenu();
       }
-      closeMenu();
     });
   });
 </script>
