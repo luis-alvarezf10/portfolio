@@ -2,16 +2,19 @@
 import BentoInformation from './bentoInformation.astro'
 import Technologies from './Technologies.astro'
 import Skills from './Skills.astro'
+import WorkExperience from './WorkExperience.astro'
 ---
 
 <BentoInformation />
-
+<section id="experience" class="min-h-screen flex flex-col justify-center py-12 px-4 w-full">
+  <WorkExperience />
+</section>
 <!-- Sección centrada verticalmente -->
 <section id="technologies" class="min-h-screen flex flex-col justify-center py-12 px-4 w-full">
   <div class="mx-auto w-full">
     <Technologies />
     <div class="mt-12">
-      <Skills />
+    <Skills />
     </div>
   </div>
 </section>
