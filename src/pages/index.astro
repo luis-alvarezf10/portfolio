@@ -42,17 +42,17 @@ description="Contrata a Luis Álvarez para gestionar tu ideas. Desarrollo de apl
     <div class="gradient-blob gradient-blob-2 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
     <div class="gradient-blob gradient-blob-3 absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
   </div>
-  <main id="home" class="min-h-[100dvh] flex flex-col items-start justify-center gap-6 md:gap-10 w-[80%] md:w-[60%] mx-auto py-4 relative">
+  <main id="home" class="min-h-[100dvh] flex flex-col items-start justify-center gap-6 md:gap-10 w-[80%] md:w-[80%] lg:w-[60%] mx-auto py-4 relative">
 		<div class="flex flex-col md:flex-row items-start md:items-center gap-4 justify-between w-full">
 			<div>
 				<!-- <img src={profile.src} alt="foto Luis Alvarez" class="w-16 h-16 rounded-full object-cover aspect-square"> -->
-				<h1 class=" text-3xl md:text-5xl font-bold">Hola! Soy Luis Álvarez</h1>
+				<h1 class=" text-3xl md:text-2xl lg:text-5xl font-bold">Hola! Soy Luis Álvarez</h1>
 			</div>
-			<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="35" class="hidden md:inline">
+			<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="35" class="hidden lg:inline">
 			<span class="bg-white/5 border border-white/10 py-1 p-5 rounded-xl text-center cursor-default">Disponible</span>
 
 		</div>
-		<p class="text-xl">Estudiante de <span class="text-[#07f9a2] italic">ingenería de sistemas</span>, apasionado en el desarrollo software.</p>
+		<p class="text-xl md:text-lg lg:text-xl">Estudiante de <span class="text-[#07f9a2] italic">ingenería de sistemas</span>, apasionado en el desarrollo software.</p>
 		<div class="flex flex-col md:flex-row justify-center md:justify-between items-start md:items-center gap-5 md:w-full">
 			<ul class="flex  items-center gap-4">
 			{
@@ -60,7 +60,7 @@ description="Contrata a Luis Álvarez para gestionar tu ideas. Desarrollo de apl
 				<li>
 					<a href={link.href} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:scale-110 transition bg-white/5 border border-white/10 p-2 rounded-xl hover:!text-[#07f9a2]">
 					<i class={`${link.icon} text-2xl`}></i>
-					<span class="hidden md:inline">{link.name}</span>
+					<span class="hidden lg:inline">{link.name}</span>
 					</a>
 				</li>
 				))
