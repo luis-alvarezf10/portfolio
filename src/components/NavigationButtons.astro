@@ -1,0 +1,103 @@
+<div class="grid fixed md:top-1/2 md:-translate-y-1/2 bottom-5 md:bottom-auto right-5 gap-3 z-40">
+    <button 
+        id="nav-up" 
+        class="flex items-center text-[#07f9a2] text-2xl bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl p-2 hover:bg-[#07f9a2]/20 transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer backdrop-blur-sm"
+        aria-label="Ir a sección anterior"
+    >
+        <i class="hn hn-angle-up"></i>
+    </button>
+    <button 
+        id="nav-down" 
+        class="flex items-center text-[#07f9a2] text-2xl bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl p-2 hover:bg-[#07f9a2]/20 transition-all hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer backdrop-blur-sm"
+        aria-label="Ir a siguiente sección"
+    >
+        <i class="hn hn-angle-down"></i>
+    </button>
+</div>
+
+<script>
+    // Definir las secciones en orden
+    const sections = ['home', 'about', 'experience', 'technologies', 'contact'];
+    let currentSectionIndex = 0;
+
+    const navUpBtn = document.getElementById('nav-up') as HTMLButtonElement;
+    const navDownBtn = document.getElementById('nav-down') as HTMLButtonElement;
+
+    // Función para navegar a una sección
+    function navigateToSection(index: number) {
+        if (index < 0 || index >= sections.length) return;
+        
+        const sectionId = sections[index];
+        
+        if (sectionId === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        currentSectionIndex = index;
+        updateButtons();
+    }
+
+    // Actualizar estado de los botones
+    function updateButtons() {
+        if (navUpBtn && navDownBtn) {
+            navUpBtn.disabled = currentSectionIndex === 0;
+            navDownBtn.disabled = currentSectionIndex === sections.length - 1;
+        }
+    }
+
+    // Detectar en qué sección estamos al hacer scroll
+    function detectCurrentSection() {
+        if (window.scrollY < 100) {
+            currentSectionIndex = 0;
+            updateButtons();
+            return;
+        }
+
+        const viewportCenter = window.scrollY + (window.innerHeight / 2);
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        sections.forEach((sectionId, index) => {
+            if (sectionId === 'home') return;
+            
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                const sectionMiddle = window.scrollY + rect.top + (rect.height / 2);
+                const distance = Math.abs(viewportCenter - sectionMiddle);
+                
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            }
+        });
+
+        currentSectionIndex = closestIndex;
+        updateButtons();
+    }
+
+    // Event listeners
+    navUpBtn?.addEventListener('click', () => {
+        navigateToSection(currentSectionIndex - 1);
+    });
+
+    navDownBtn?.addEventListener('click', () => {
+        navigateToSection(currentSectionIndex + 1);
+    });
+
+    // Detectar sección actual al hacer scroll
+    let scrollTimeout: number;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = window.setTimeout(detectCurrentSection, 100);
+    });
+
+    // Inicializar
+    detectCurrentSection();
+</script>

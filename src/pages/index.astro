@@ -5,6 +5,7 @@ import AboutSection from '../components/AboutSection.astro'
 import Projects from '../components/Projects.astro'
 import ContactSection from '../components/ContactSection.astro'
 import WorkExperience from '../components/WorkExperience.astro';
+import NavigationButtons from '../components/NavigationButtons.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -33,14 +34,15 @@ const socialLinks = [
 ];
 ---
 
-<Layout title="Luis Alvarez - Ingeniero de sistemas y desarollador web"
-description="Contrata a Luis Alvarez para gestionar tu ideas. Desarrollo movil y web. ">
+<Layout title="Luis Alvarez - desarollador software"
+description="Contrata a Luis Álvarez para gestionar tu ideas. Desarrollo de aplicaciones multiplataforma y páginas web. ">
+  <NavigationButtons/>
   <div class="fixed inset-0 -z-10 overflow-hidden">
     <div class="gradient-blob gradient-blob-1 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
     <div class="gradient-blob gradient-blob-2 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
     <div class="gradient-blob gradient-blob-3 absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
   </div>
-  <main class="min-h-[100dvh] flex flex-col items-start justify-center gap-6 md:gap-10 w-[80%] md:w-[60%] mx-auto py-4 relative">
+  <main id="home" class="min-h-[100dvh] flex flex-col items-start justify-center gap-6 md:gap-10 w-[80%] md:w-[60%] mx-auto py-4 relative">
 		<div class="flex flex-col md:flex-row items-start md:items-center gap-4 justify-between w-full">
 			<div>
 				<!-- <img src={profile.src} alt="foto Luis Alvarez" class="w-16 h-16 rounded-full object-cover aspect-square"> -->

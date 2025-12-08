@@ -60,7 +60,7 @@ const bentoSections = [
     gridClasses: "md:col-start-1 md:col-end-4 md:row-start-4 md:row-end-6",
     title: "info",
     icon: "hn hn-info-circle-solid",
-    content: "Soy estudiante de Ingeniería de sistemas, con finalización estimada en febrero de 2027, me gusta el desarrollo de aplicaciones móviles y páginas web.",
+    content: "Soy estudiante de Ingeniería de sistemas, con finalización estimada en febrero de 2027, me gusta el desarrollo de aplicaciones multiplataforma y páginas web.",
     type: "info"
   }
 ]
@@ -70,7 +70,7 @@ const bentoSections = [
     <h2 class="w-[80%] md:w-[60%] font-bold text-4xl">Sobre mí</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 md:grid-rows-5 w-[80%] md:w-[60%] mx-auto">
     {bentoSections.map(section => (
-      <div class={`bg-white/5 border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.25)] p-4 m-1 rounded-lg hover:scale-102 duration-200 ${section.gridClasses} ${
+      <div class={`bg-white/5 border border-white/10 shadow-[0_4px_10px_rgba(0,0,0,0.25)] p-4 m-1 rounded-xl hover:scale-102 duration-200 ${section.gridClasses} ${
         section.type === 'profile' ? 'flex flex-col justify-center items-center gap-4' :
         section.type === 'timeline' ? 'flex flex-col justify-center items-center gap-1 md:items-start' :
         section.type === 'values' ? 'flex flex-col justify-center items-center gap-6 md:items-start' :
@@ -115,7 +115,7 @@ const bentoSections = [
             </h2>
             <ol class="text-md text-gray-400 flex flex-col items-center w-full gap-2 cursor-default">
               {valores.map(valor => (
-                <li class="flex flex-col items-center gap-1 bg-black/20 w-1/2 md:w-full border border-white/15 rounded-lg p-1">
+                <li class="flex flex-col items-center gap-1 bg-black/20 w-1/2 md:w-full border border-white/15 rounded-xl p-1">
                   <i class={valor.icono}></i>
                   {valor.nombre}
                 </li>
@@ -130,7 +130,7 @@ const bentoSections = [
               <i class={`${section.icon} text-[#07f9a2]`}></i>{section.title}
             </h2>
             <p class="text-sm md:text-base ">{section.content}</p>
-            <a href="#experience" class="bg-black/20 border border-white/15 text-gray-400 px-2 py-1 text-sm rounded-lg transition-colors duration-200 flex items-center gap-2 hover:bg-white/5 hover:text-white">
+            <a href="#experience" class="bg-black/20 border border-white/15 text-gray-400 px-3 py-1 text-sm rounded-xl transition-colors duration-200 flex items-center gap-2 hover:bg-white/5 hover:text-white">
               <i class="hn hn-ellipses-horizontal"></i>
               Experiencia Laboral
             </a>
