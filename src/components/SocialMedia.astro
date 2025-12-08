@@ -1,0 +1,143 @@
+<div class="grid justify-center">
+    <h3 class="text-gray-400">Muestra de mi trabajo</h3>
+    <div class="flex items-center justify-center gap-5">
+      <!-- github -->
+      <a id= "github" class="btnSocialMedia">
+        <span class="name">GitHub</span>
+        <i class="icon hn hn-github"></i>
+      </a>
+      <!-- linkedin -->
+      <a id="linkedin" class="btnSocialMedia">
+        <span class="name">linkedin</span>
+          <i class="icon hn hn-linkedin"></i>
+      </a>
+      <!-- x -->
+      <a id="x" class="btnSocialMedia">
+        <span class="name">X</span>
+          <i class="icon hn hn-x"></i>
+      </a>
+      <!-- Youtube -->
+      <a id="youtube" class="btnSocialMedia">
+        <span class="name">Youtube</span>
+          <i class="icon hn hn-youtube"></i>
+      </a>
+    </div>
+    <h3 class="text-gray-400">¡Contactame aquí!</h3>
+    <div class="flex items-center justify-center gap-5">
+      <!-- whatsapp -->
+      <a id="whatsapp" class="btnSocialMedia">
+        <span class="name">Whatsapp</span>
+          <i class="icon hn hn-phone-ringing-low"></i>
+      </a>
+      <!-- email -->
+      <a id="email" class="btnSocialMedia">
+        <span class="name">Email</span>
+          <i class="icon hn hn-envelope-solid"></i>
+      </a>
+      <!-- discord -->
+      <a id="discord" class="btnSocialMedia">
+        <span class="name">Discord</span>
+          <i class="icon hn hn-discord"></i>
+      </a>
+    </div>
+</div>
+
+
+<style>
+    
+/* From Uiverse.io by vinodjangid07 */ 
+.btnSocialMedia {
+  width: 50px;
+  height: 50px;
+  border-radius: 20%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.icon {
+  transition-duration: .3s;
+  font-size: 30px;
+  color: #07f9a2;
+}
+
+.name{
+  position: absolute;
+  color: #07f9a2;
+  transform: translateY(-50%);
+  transition-duration: .3s;
+  opacity: 0;
+}
+
+.btnSocialMedia:hover {
+  width: 140px;
+  border-radius: 15px;
+  transition-duration: .3s;
+  align-items: center;
+}
+
+#github:hover {
+  background-color: #24292e;
+}
+
+#whatsapp:hover {
+  background-color: #25d366;
+}
+
+#email:hover {
+  background-color: #ea4335;
+}
+
+#discord:hover {
+  background-color: #5865f2;
+}
+
+#linkedin:hover {
+  background-color: #0a66c2;
+}
+
+#x:hover {
+  background-color: #000000;
+}
+
+#youtube:hover {
+  background-color: #ff0000;
+}
+
+.btnSocialMedia:hover .icon {
+  font-size: 35px;
+  transition-duration: .3s;
+  transform: translateY(70%);
+  color: white;
+}
+
+.btnSocialMedia:hover .name{
+  font-size: 18px;
+  opacity: 1;
+  transform: translateY(-20%);
+  transition-duration: .3s;
+  color: white;
+}
+
+.btnSocialMedia::before {
+  position: absolute;
+  top: -20px;
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.btnSocialMedia:hover::before {
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+</style>

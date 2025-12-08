@@ -1,27 +1,36 @@
-<section id="contact" class="min-h-[100dvh] flex flex-col items-center justify-center  ">
+---
+    import SocialMedia from './SocialMedia.astro'
+---
+
+
+<section id="contact" class="min-h-[100dvh] flex flex-col items-center justify-center py-12">
     <div class="mx-auto w-full">
         <div class="parent">
             <div class="div1 card">
                 <h2>¿Tienes alguna idea o proyecto en mente?</h2>
-                <p>¡Contáctame!</p>
+                <SocialMedia/>
             </div>
             <div class="div2 card">
                 <h3>Nombre</h3>
-                <input type="text" placeholder="Nombre" class="w-full p-2 rounded bg-white/5 border border-white/10">
-                <input type="email" placeholder="Email" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10">
+                <div class="grid py-3 h-full">
+                    <input type="text" placeholder="Nombre" class="w-full p-2 rounded bg-white/5 border border-white/10">
+                    <input type="email" placeholder="Email" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10">
+                    <input type="tel" placeholder="Teléfono" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10">
+                </div>
             </div>
             <div class="div3 card">
                 <h3>Mensaje</h3>
-                <textarea placeholder="Escribe tu mensaje aquí..." class="w-full h-32 p-2 mt-2 rounded bg-white/5 border border-white/10"></textarea>
+                <textarea placeholder="Escribe tu mensaje aquí..." class="w-full h-full p-2 mt-2 rounded bg-white/5 border border-white/10"></textarea>
             </div>
             <div class="div4 card flex justify-center">
-                <button class="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors duration-200">Enviar</button>
+                <button class="button w-full">Enviar</button>
             </div>
         </div>  
     </div>
 </section>
 
 <style>
+
     .parent {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -37,11 +46,13 @@
         padding: 1.5rem;
         border-radius: 0.75rem;
         transition: all 0.2s ease-in-out;
+        backdrop-filter: blur(10px);
     }
 
     .card:hover {
         transform: scale(1.01);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(3px);
     }
 
     .div1 { 
@@ -95,24 +106,63 @@
     }
 
     input:focus, textarea:focus {
-        border-color: rgba(255, 255, 255, 0.3);
+        border-color: #07f9a2;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
 
-    button {
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border: none;
-        border-radius: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
 
-    button:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-1px);
-    }
-v4 { grid-area: 5 / 2 / 6 / 5; }
+
+.button {
+  /* in scss with just one variable i can change opacity with rgba(variable, opacity) but in css it's not possible so i have used three seperate variables */
+  /* with hue-rotate color can be changed */
+  --main-color: #07f9a2;
+  --main-bg-color: rgba(46, 213, 116, 0.36);
+  --pattern-color: rgba(46, 213, 116, 0.073);
+
+  /* change this rotation value */
+  filter: hue-rotate(0deg);
+
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  background: radial-gradient(
+      circle,
+      var(--main-bg-color) 0%,
+      rgba(0, 0, 0, 0) 95%
+    ),
+    linear-gradient(var(--pattern-color) 1px, transparent 1px),
+    linear-gradient(to right, var(--pattern-color) 1px, transparent 1px);
+  background-size:
+    cover,
+    15px 15px,
+    15px 15px;
+  background-position:
+    center center,
+    center center,
+    center center;
+  border-image: radial-gradient(
+      circle,
+      var(--main-color) 0%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    1;
+  border-width: 1px 0 1px 0;
+  color: var(--main-color);
+  padding: 1rem 3rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: background-size 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-size:
+    cover,
+    10px 10px,
+    10px 10px;
+}
+.button:active {
+  filter: hue-rotate(250deg);
+}
+
+
 </style>
