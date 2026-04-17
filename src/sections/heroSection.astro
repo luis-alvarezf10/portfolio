@@ -1,5 +1,5 @@
 ---
-import { socialLinks } from '../constants/socialLinks.ts'
+import { socialLinks } from '../constants/socialLinks'
 import Badge from '../components/badges/Badge.astro';
 ---
 
@@ -22,13 +22,14 @@ import Badge from '../components/badges/Badge.astro';
       class="hidden lg:inline"
     />
     <Badge variant="green">
+      <i class="hn hn-check"></i>
       Disponible
     </Badge>
   </div>
   <p class="text-xl md:text-lg lg:text-xl">
     Estudiante de <span class="text-[#07f9a2] italic"
-      >ingenería de sistemas</span
-    >, apasionado en el desarrollo software.
+      >ingeniería de sistemas</span
+    >, apasionado en <br class="block lg:hidden"><span id="typewriter" class="text-[#07f9a2] font-mono"></span>
   </p>
   <div
     class="flex flex-col md:flex-row justify-center md:justify-between items-start md:items-center gap-5 md:w-full"
@@ -64,3 +65,74 @@ import Badge from '../components/badges/Badge.astro';
     </a>
   </div>
 </main>
+
+<script>
+  // @ts-ignore
+  import Typed from 'typed.js';
+
+  const setupTyped = () => {
+    const target = document.querySelector('#typewriter');
+    if (!target) return;
+
+    new Typed('#typewriter', {
+      strings: [
+        'desarrollo web.',
+        'desarrollo móvil.',
+        'automatización con IA.',
+        'desarrollo software.'
+      ],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 2000,
+      loop: true,
+      cursorChar: '_',
+    });
+  };
+
+  setupTyped();
+  document.addEventListener('astro:after-swap', setupTyped);
+</script>
+
+<style>
+  
+@keyframes bounceY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+
+.button-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-hover span {
+  transition: opacity 0.4s ease;
+}
+
+.button-hover i {
+  position: absolute;
+  left: 100%;                /* empieza fuera del botón, a la derecha */
+  top: 50%;
+  transform: translateY(-50%); /* centrado vertical */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.2em;
+}
+
+.button-hover:hover span {
+  opacity: 0;
+}
+
+.button-hover:hover i {
+  left: 50%;                         /* se mueve al centro */
+  transform: translate(-50%, -50%) scale(1.3); /* centrado + zoom */
+  z-index: 10;
+}
+.animate-bounceY {
+  animation: bounceY 1.5s ease-in-out infinite;
+}
+</style>
