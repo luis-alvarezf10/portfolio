@@ -1,0 +1,48 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props {
+  variant?: 'default' | 'mint' | 'outline';
+  href?: string;
+  ariaLabel: string;
+  className?: string;
+  tooltip?: string; // Nueva prop para el texto del tooltip
+}
+
+const { 
+  variant = 'default', 
+  href, 
+  ariaLabel, 
+  className = "",
+  tooltip
+} = Astro.props;
+
+const baseClasses = "p-3 rounded-full border flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#07f9a2]/50 relative cursor-pointer";
+
+const variants = {
+  default: "text-2xl text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl flex items-center justify-center w-10 h-10 focus:outline-none",
+  mint: "bg-[#07f9a2]/10 border-[#07f9a2]/20 text-[#07f9a2] hover:bg-[#07f9a2]/20 hover:border-[#07f9a2]/30",
+  outline: "border-white/20 text-gray-300 bg-transparent hover:border-[#07f9a2]/50 hover:text-white"
+};
+
+const Element = href ? 'a' : 'button';
+
+const anchorProps: HTMLAttributes<'a'> = { href, target: "_blank", rel: "noopener noreferrer", "aria-label": ariaLabel };
+const buttonProps: HTMLAttributes<'button'> = { type: "button", "aria-label": ariaLabel };
+const elementProps = href ? anchorProps : buttonProps;
+---
+
+<Element
+  class:list={[baseClasses, variants[variant], className]}
+  {...elementProps as any}
+>
+  <slot />
+
+  {tooltip && (
+    <span class="absolute top-full mb-2 hidden group-hover:block w-max px-2 py-1 bg-gray-900 text-white text-[10px] rounded border border-white/10 shadow-xl pointer-events-none animate-in fade-in zoom-in-95 duration-200 z-50">
+      {tooltip}
+    </span>
+  )}
+
+  <span class="sr-only">{ariaLabel}</span>
+</Element>
