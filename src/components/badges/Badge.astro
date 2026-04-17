@@ -1,0 +1,18 @@
+---
+interface Props {
+  variant?: 'default' | 'success' | 'outline' | 'green';
+}
+
+const { variant = 'default' } = Astro.props;
+
+const variants = {
+  default: "bg-white/5 border-white/10 text-white",
+  success: "bg-[#07f9a2]/10 border-[#07f9a2]/20 text-[#07f9a2]",
+  outline: "border-white/20 text-gray-300 bg-transparent",
+  green: "text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 hover:shadow-md transition transform hover:scale-105"
+};
+---
+
+<span class={`text-xs font-medium px-3 py-1 rounded-full border cursor-default ${variants[variant]} backdrop-blur-sm transition-all hover:border-[#07f9a2]/50`}>
+  <slot />
+</span>
