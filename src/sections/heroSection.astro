@@ -51,12 +51,15 @@ import Badge from '../components/badges/Badge.astro';
         ))
       }
     </ul>
-    <button
-      class="button-hover bg-[#07f9a2] py-2 px-10 flex items-center gap-5 text-[#030b13] font-bold cursor-pointer rounded-xl w-full md:w-auto justify-center relative overflow-hidden"
+    <a
+      class="button-hover bg-[#07f9a2] py-2 px-10 flex items-center gap-5 text-[#030b13] font-bold cursor-pointer rounded-xl w-full md:w-auto justify-center relative overflow-hidden bg-[#07f9a2] text-[#030b13] hover:shadow-[0_0_20px_rgba(7,249,162,0.4)] hover:brightness-110 transition-all duration-300 active:scale-95"
+      href="https://drive.google.com/drive/folders/1iy9-dpCE63PiNxx4-xOQoj8nf2VvCCsd?usp=drive_link"
+      target="_blank"
+      
     >
       <span class="relative z-0">Descargar CV</span>
       <i class="hn hn-download-solid relative"></i>
-    </button>
+    </a>
   </div>
   <div class="flex-shrink-0 w-full flex justify-center items-center mt-4">
     <a href="#about" class="text-center flex flex-col items-center gap-2">
@@ -135,4 +138,15 @@ import Badge from '../components/badges/Badge.astro';
 .animate-bounceY {
   animation: bounceY 1.5s ease-in-out infinite;
 }
+
 </style>
+
+<style is:global>
+  /* El punto clave es esta clase que genera Typed.js */
+  .typed-cursor {
+    color: #07f9a2; /* Tu color verde menta */
+    font-size: 1.1em;
+    font-weight: bold;
+    /* Opcional: un efecto de neón */
+    text-shadow: 0 0 8px rgba(7, 249, 162, 0.6);
+  }
