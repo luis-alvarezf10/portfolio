@@ -1,6 +1,6 @@
 ---
-import { socialLinks } from '../constants/socialLinks'
-import Badge from '../components/badges/Badge.astro';
+import { socialLinks } from "../constants/socialLinks";
+import Badge from "../components/badges/Badge.astro";
 ---
 
 <main
@@ -29,7 +29,9 @@ import Badge from '../components/badges/Badge.astro';
   <p class="text-xl md:text-lg lg:text-xl">
     Estudiante de <span class="text-[#07f9a2] italic"
       >ingeniería de sistemas</span
-    >, apasionado en <br class="block lg:hidden"><span id="typewriter" class="text-[#07f9a2] font-mono"></span>
+    >, apasionado en <br class="block lg:hidden" /><span
+      id="typewriter"
+      class="text-[#07f9a2] font-mono"></span>
   </p>
   <div
     class="flex flex-col md:flex-row justify-center md:justify-between items-start md:items-center gap-5 md:w-full"
@@ -42,10 +44,17 @@ import Badge from '../components/badges/Badge.astro';
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 hover:scale-110 transition bg-white/5 border border-white/10 p-2 rounded-xl hover:!text-[#07f9a2]"
+              class="group flex items-center gap-2 p-2 rounded-xl border border-white/10 bg-white/5 
+         transition-all duration-300 ease-out
+         hover:scale-110 hover:border-[#07f9a2]/40 hover:bg-[#07f9a2]/10 
+         hover:shadow-[0_0_20px_rgba(7,249,162,0.2)]"
             >
-              <i class={`${link.icon} text-2xl`} />
-              <span class="hidden lg:inline">{link.name}</span>
+              <i
+                class={`${link.icon} text-2xl transition-transform duration-300 group-hover:rotate-5 group-hover:text-[#07f9a2]`}
+              />
+              <span class="hidden lg:inline font-medium group-hover:text-[#07f9a2] transition-colors">
+                {link.name}
+              </span>
             </a>
           </li>
         ))
@@ -55,12 +64,98 @@ import Badge from '../components/badges/Badge.astro';
       class="button-hover bg-[#07f9a2] py-2 px-10 flex items-center gap-5 text-[#030b13] font-bold cursor-pointer rounded-xl w-full md:w-auto justify-center relative overflow-hidden bg-[#07f9a2] text-[#030b13] hover:shadow-[0_0_20px_rgba(7,249,162,0.4)] hover:brightness-110 transition-all duration-300 active:scale-95"
       href="https://drive.google.com/drive/folders/1iy9-dpCE63PiNxx4-xOQoj8nf2VvCCsd?usp=drive_link"
       target="_blank"
-      
     >
       <span class="relative z-0">Descargar CV</span>
       <i class="hn hn-download-solid relative"></i>
     </a>
   </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full mt-10 mb-12">
+  {
+    [
+      { label: "Años de estudio", value: 4, suffix: "+" },
+      { label: "Proyectos Github", value: 18, suffix: "+" },
+      { label: "Tecnologías", value: 12, suffix: "+" },
+      { label: "Commits", value: 150, suffix: "+" },
+    ].map((stat) => (
+      <div class="flex flex-col items-start opacity-0 translate-y-4 animate-on-scroll">
+        <div class="flex items-baseline gap-1">
+          <span
+            class="text-3xl md:text-4xl font-bold text-[#07f9a2] counter"
+            data-target={stat.value}
+          >
+            0
+          </span>
+          <span class="text-xl font-bold text-[#07f9a2]">{stat.suffix}</span>
+        </div>
+        <span class="text-[10px] lg:text-xs text-gray-400 uppercase tracking-[0.2em] font-semibold leading-tight">
+          {stat.label}
+        </span>
+      </div>
+    ))
+  }
+</div>
+
+  <script>
+  // @ts-ignore
+    const startCounter = (el) => {
+      const target = parseInt(el.getAttribute("data-target"));
+      const duration = 2000; // 2 segundos
+      const step = target / (duration / 16); // 60fps aprox
+      let current = 0;
+
+      const update = () => {
+        current += step;
+        if (current < target) {
+          el.innerText = Math.floor(current);
+          requestAnimationFrame(update);
+        } else {
+          el.innerText = target;
+        }
+      };
+      update();
+    };
+
+    // Intersection Observer para disparar la animación al verla
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            // Animación de subida del contenedor
+            el.classList.add("animate-fade-in-up");
+
+            // Iniciar conteo de números
+            const counter = el.querySelector(".counter");
+            if (counter) startCounter(counter);
+
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    document
+      .querySelectorAll(".animate-on-scroll")
+      .forEach((el) => observer.observe(el));
+  </script>
+
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+  </style>
   <div class="flex-shrink-0 w-full flex justify-center items-center mt-4">
     <a href="#about" class="text-center flex flex-col items-center gap-2">
       <span>Acerca de mi</span>
@@ -71,74 +166,72 @@ import Badge from '../components/badges/Badge.astro';
 
 <script>
   // @ts-ignore
-  import Typed from 'typed.js';
+  import Typed from "typed.js";
 
   const setupTyped = () => {
-    const target = document.querySelector('#typewriter');
+    const target = document.querySelector("#typewriter");
     if (!target) return;
 
-    new Typed('#typewriter', {
+    new Typed("#typewriter", {
       strings: [
-        'desarrollo web.',
-        'desarrollo móvil.',
-        'automatización con IA.',
-        'desarrollo software.'
+        "desarrollo web.",
+        "desarrollo móvil.",
+        "automatización con IA.",
+        "desarrollo software.",
       ],
       typeSpeed: 60,
       backSpeed: 40,
       backDelay: 2000,
       loop: true,
-      cursorChar: '_',
+      cursorChar: "_",
     });
   };
 
   setupTyped();
-  document.addEventListener('astro:after-swap', setupTyped);
+  document.addEventListener("astro:after-swap", setupTyped);
 </script>
 
 <style>
-  
-@keyframes bounceY {
-  0%, 100% {
-    transform: translateY(0);
+  @keyframes bounceY {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
   }
-  50% {
-    transform: translateY(10px);
+
+  .button-hover {
+    position: relative;
+    overflow: hidden;
   }
-}
 
+  .button-hover span {
+    transition: opacity 0.4s ease;
+  }
 
-.button-hover {
-  position: relative;
-  overflow: hidden;
-}
+  .button-hover i {
+    position: absolute;
+    left: 100%; /* empieza fuera del botón, a la derecha */
+    top: 50%;
+    transform: translateY(-50%); /* centrado vertical */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.2em;
+  }
 
-.button-hover span {
-  transition: opacity 0.4s ease;
-}
+  .button-hover:hover span {
+    opacity: 0;
+  }
 
-.button-hover i {
-  position: absolute;
-  left: 100%;                /* empieza fuera del botón, a la derecha */
-  top: 50%;
-  transform: translateY(-50%); /* centrado vertical */
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 1.2em;
-}
-
-.button-hover:hover span {
-  opacity: 0;
-}
-
-.button-hover:hover i {
-  left: 50%;                         /* se mueve al centro */
-  transform: translate(-50%, -50%) scale(1.3); /* centrado + zoom */
-  z-index: 10;
-}
-.animate-bounceY {
-  animation: bounceY 1.5s ease-in-out infinite;
-}
-
+  .button-hover:hover i {
+    left: 50%; /* se mueve al centro */
+    transform: translate(-50%, -50%) scale(1.3); /* centrado + zoom */
+    z-index: 10;
+  }
+  .animate-bounceY {
+    animation: bounceY 1.5s ease-in-out infinite;
+  }
 </style>
 
 <style is:global>
@@ -150,3 +243,4 @@ import Badge from '../components/badges/Badge.astro';
     /* Opcional: un efecto de neón */
     text-shadow: 0 0 8px rgba(7, 249, 162, 0.6);
   }
+</style>
