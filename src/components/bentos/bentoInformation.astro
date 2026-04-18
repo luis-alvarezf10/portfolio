@@ -92,8 +92,8 @@ const bentoSections = [
             <div>
               <ol class="relative border-s border-gray-200 dark:border-gray-700">
                 {estudios.map((estudio, index) => (
-                  <li class={`ms-4 ${index < estudios.length - 1 ? 'mb-10' : ''}`}>
-                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                  <li class={`group ms-4 ${index < estudios.length - 1 ? 'mb-10' : ''}`}>
+                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 dark:bg-gray-700 group-hover:bg-[#07f9a2] transition-all duration-300"></div>
                     <time class="mb-1 text-sm font-normal leading-none text-gray-500">{estudio.periodo}</time>
                     <h3 class="text-lg font-semibold">{estudio.titulo}</h3>
                     <a href={estudio.url} target="_blank" class="text-base font-normal text-gray-500 dark:text-gray-400 flex items-center gap-5">
