@@ -13,9 +13,9 @@ export const workExperience = [
     icon: "hn hn-business",
   },
   {
-    company: "Hunter",
-    date: "Febrero 2026 - presente",
-    description: "Desarrollo de sistemas de gestión web y móvil, automatización con IA. ",
-    icon: "hn hn-startups",
+    company: "Elmio App",
+    date: "Febrero 2026 - Abril 2026",
+    description: "(Pasantías) Desarrollo de APIs, y consumo de endpoints de banco R4.",
+    icon: "hn hn-fire-solid",
   },
 ];
