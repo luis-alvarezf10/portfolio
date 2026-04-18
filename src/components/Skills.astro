@@ -1,266 +1,137 @@
 ---
-import Icons from './Icons.astro';
+import Icons from "./Icons.astro";
+import { skillColors, skillsData } from "../constants/skills";
 
-  // Mapeo de colores para cada habilidad
-  const skillColors = {
-    'C++': 'group-hover:text-[#00599C]',
-    'C#': 'group-hover:text-[#9B4F96]',
-    'Visual Basic': 'group-hover:text-[#512BD4]',
-    'HTML': 'group-hover:text-[#E34F26]',
-    'CSS': 'group-hover:text-[#663399]',
-    'JavaScript': 'group-hover:text-[#F7DF1E]',
-    'TypeScript': 'group-hover:text-[#3178C6]',
-    'Python': 'group-hover:text-[#3776AB]',
-    'Dart': 'group-hover:text-[#0175C2]',
-    'Bootstrap': 'group-hover:text-[#7952B3]',
-    'Tailwind': 'group-hover:text-[#06B6D4]',
-    'Material UI': 'group-hover:text-[#007FFF]',
-    'React': 'group-hover:text-[#61DAFB]',
-    'Astro': 'group-hover:text-[#BC52EE]',
-    'Vite': 'group-hover:text-[#646CFF]',
-    'Jinja': 'group-hover:text-[#7E0C1B]',
-    'Django': 'group-hover:text-[#092E20]',
-    'Supabase': 'group-hover:text-[#3FCF8E]',
-    '.NET': 'group-hover:text-[#512BD4]',
-    'React Router': 'group-hover:text-[#CA4245]',
-    'MySQL': 'group-hover:text-[#4479A1]',
-    'SQLite': 'group-hover:text-[#003B57]',
-    'JSON': 'group-hover:text-[#000000]',
-    'Mongodb': 'group-hover:text-[#47A248]',
-    'Flet': 'group-hover:text-[#EE3167]',
-    'Flutter': 'group-hover:text-[#02569B]',
-    'WinForms': 'group-hover:text-[#07f9a2]',
-  };
-
-  const skillsData = {
-    lenguajes: [
-      { name: "C++", icon: "cpp" },
-      { name: "C#", icon: "csharp" },
-      { name: "Visual Basic", icon: "vb" },
-      { name: "HTML", icon: "html5" },
-      { name: "CSS", icon: "css3" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Python", icon: "python" },
-      { name: "Dart", icon: "dart" },
-    ],
-    frontend: [
-      { name: "WinForms", icon: "code" },
-      { name: "Bootstrap", icon: "bootstrap" },
-      { name: "React", icon: "react" },
-      { name: "Material UI", icon: "mui" },
-      { name: "Vite", icon: "vite" },
-      { name: "Tailwind", icon: "tailwind" },
-      { name: "Astro", icon: "astro" },
-      { name: "Flutter", icon: "flutter" },
-      { name: "Flet", icon: "flet" },
-    ],
-    backend: [
-      { name: ".NET", icon: "dotnet" },
-      { name: "React Router", icon: "reactrouter"},
-      { name: "Django", icon: "django" },
-      { name: "Jinja", icon: "jinja" },
-      { name: "Supabase", icon: "supabase" },
-    ],
-    databases: [
-      { name: "MySQL", icon: "mysql" },
-      { name: "SQLite", icon: "sqlite"},
-      { name: "JSON", icon: "json"},  
-      { name: "Supabase", icon: "supabase" }, 
-      { name: "Mongodb", icon: "mongodb" },
-    ]
-  };
+const categories = [
+  { id: "lenguajes", label: "Lenguajes" },
+  { id: "frontend", label: "Frontend" },
+  { id: "backend", label: "Backend" },
+  { id: "databases", label: "Bases de Datos" },
+];
 ---
 
-<section class="flex flex-col items-center justify-center">
-  <h2 class="w-[80%] md:w-[80%] lg:w-[60%] font-bold text-4xl">Skills</h2>
-  <div class="w-[80%] md:w-[80%] lg:w-[60%] flex flex-col gap-3">
+<section class="flex flex-col items-center justify-center py-10">
+  <h2 class="w-[80%] lg:w-[60%] font-bold text-4xl mb-6">Skills</h2>
+  <div class="w-[80%] lg:w-[60%] flex flex-col gap-6">
     
-    <!-- Button Group -->
-    <div class="w-full">
-      <div class="relative inline-flex flex-wrap justify-center gap-2 p-1 bg-white/5 border border-white/10 rounded-xl w-full mx-auto">
-        <button 
-          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-xl transition-all duration-200 w-full sm:w-auto hover:bg-white/10 active:scale-95 active cursor-pointer" 
-          data-category="lenguajes"
+    <div class="relative inline-flex flex-wrap justify-center gap-2 p-1 bg-white/5 border border-white/10 rounded-xl w-full mx-auto overflow-hidden">
+      <div id="pill-bg" class="absolute bg-[#07f9a2] rounded-lg transition-all duration-300 ease-out z-0"></div>
+      {categories.map((cat, index) => (
+        <button
+          class={`skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-xl transition-all duration-200 w-full sm:w-auto cursor-pointer z-10 ${index === 0 ? "active" : ""}`}
+          data-category={cat.id}
         >
-          <span class="flex items-center justify-center gap-2">
-            Lenguajes
-          </span>
+          <span class="flex items-center justify-center gap-2">{cat.label}</span>
         </button>
-        <button 
-          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-xl transition-all duration-200 w-full sm:w-auto hover:bg-white/10 active:scale-95 cursor-pointer" 
-          data-category="frontend"
-        >
-          <span class="flex items-center justify-center gap-2">
-            Frontend
-          </span>
-        </button>
-        <button 
-          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-xl transition-all duration-200 w-full sm:w-auto hover:bg-white/10 active:scale-95 cursor-pointer" 
-          data-category="backend"
-        >
-          <span class="flex items-center justify-center gap-2">
-            Backend
-          </span>
-        </button>
-        <button 
-          class="skill-btn px-4 py-2.5 text-sm sm:text-base font-medium rounded-xl transition-all duration-200 w-full sm:w-auto hover:bg-white/10 active:scale-95 cursor-pointer" 
-          data-category="databases"
-        >
-          <span class="flex items-center justify-center gap-2">
-            Bases de Datos
-          </span>
-        </button>
-      </div>
+      ))}
     </div>
 
-
-    <!-- Skills Grid -->
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 cursor-default" id="skills-grid">
-      {skillsData.lenguajes.map(skill => (
-        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-xl flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300" data-category="lenguajes">
-          <Icons 
-            name={skill.icon} 
-            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || ''}`} 
-          />
-          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
-        </div>
-      ))}
-      {skillsData.frontend.map(skill => (
-        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 hidden" data-category="frontend">
-          <Icons 
-            name={skill.icon} 
-            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || 'group-hover:text-[#07f9a2]'}`} 
-          />
-          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
-        </div>
-      ))}
-      {skillsData.backend.map(skill => (
-        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 hidden" data-category="backend">
-          <Icons 
-            name={skill.icon} 
-            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || 'group-hover:text-[#07f9a2]'}`} 
-          />
-          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
-        </div>
-      ))}
-      {skillsData.databases.map(skill => (
-        <div class="skill-item group bg-white/5 border border-white/10 p-4 rounded-lg flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 hidden" data-category="databases">
-          <Icons 
-            name={skill.icon} 
-            class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${skillColors[skill.name as keyof typeof skillColors] || 'group-hover:text-[#07f9a2]'}`} 
-          />
-          <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
-        </div>
-      ))}
+      {Object.entries(skillsData).map(([category, skills]) =>
+        skills.map((skill) => {
+          const isDefault = category === "lenguajes";
+          const customColor = skillColors[skill.name as keyof typeof skillColors];
+          return (
+            <div
+              class={`skill-item group bg-white/5 border border-white/10 p-4 rounded-xl flex flex-col items-center gap-3 transition-all duration-500 ${isDefault ? "flex opacity-100 scale-100" : "hidden opacity-0 scale-90"}`}
+              data-category={category}
+            >
+              <Icons
+                name={skill.icon}
+                class={`w-8 h-8 text-gray-400 fill-current transition-colors duration-300 ${customColor || "group-hover:text-[#07f9a2]"}`}
+              />
+              <span class="font-semibold text-sm group-hover:font-bold transition-all duration-300">{skill.name}</span>
+            </div>
+          );
+        })
+      )}
     </div>
   </div>
 </section>
 
 <script>
-  const buttons = document.querySelectorAll('.skill-btn');
-  const skillItems = document.querySelectorAll('.skill-item');
+  const buttons = document.querySelectorAll(".skill-btn");
+  const skillItems = document.querySelectorAll(".skill-item");
+  const pill = document.getElementById("pill-bg");
 
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const category = button.getAttribute('data-category');
-      
-      // Update active button
-      buttons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Show/hide skills
-      skillItems.forEach(item => {
-        if (item.getAttribute('data-category') === category) {
-          item.classList.remove('hidden');
-          item.classList.add('flex');
+  const updatePill = () => {
+    const activeBtn = document.querySelector(".skill-btn.active") as HTMLElement;
+    if (pill && activeBtn) {
+      pill.style.width = `${activeBtn.offsetWidth}px`;
+      pill.style.height = `${activeBtn.offsetHeight}px`;
+      pill.style.left = `${activeBtn.offsetLeft}px`;
+      pill.style.top = `${activeBtn.offsetTop}px`;
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-category");
+
+      // 1. Update Buttons
+      buttons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+      updatePill();
+
+      // 2. Filter with Transition
+      skillItems.forEach((item) => {
+        const el = item as HTMLElement;
+        if (el.dataset.category === category) {
+          el.classList.remove("hidden");
+          // Pequeño timeout para que el navegador note el cambio de 'hidden' antes de la opacidad
+          setTimeout(() => {
+            el.classList.add("flex", "opacity-100", "scale-100");
+            el.classList.remove("opacity-0", "scale-90");
+          }, 10);
         } else {
-          item.classList.add('hidden');
-          item.classList.remove('flex');
+          el.classList.add("opacity-0", "scale-90");
+          el.classList.remove("opacity-100", "scale-100");
+          // Esperamos a que termine la animación para ocultar
+          setTimeout(() => {
+            if (el.classList.contains("opacity-0")) {
+              el.classList.add("hidden");
+              el.classList.remove("flex");
+            }
+          }, 300);
         }
       });
     });
   });
+
+  window.addEventListener("load", updatePill);
+  window.addEventListener("resize", updatePill);
 </script>
 
 <style>
-  .skill-btn {
-    color: #9ca3af;
-  }
-  
-  .skill-btn.active {
-    background-color: #07f9a2;
-    color: #030b13;
-    font-weight: 600;
-  }
-  
-  .skill-btn:hover:not(.active) {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-  }
-  
-  .vb-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    background-color: #00fdaa;
-    border-radius: 4px;
-    padding: 2px 6px;
-    color: #030b13;
-    transition: all 0.3s ease;
-  }
-  
-  .group:hover .vb-icon {
-    color: #512BD4 !important;
-    filter: drop-shadow(0 0 15px rgba(81, 43, 212, 0.8)) drop-shadow(0 0 25px rgba(81, 43, 212, 0.6));
-  }
-  
-  /* Gradiente sutil dentro de la tarjeta */
+  /* Tus estilos originales preservados */
+  .skill-btn { color: #9ca3af; }
+  .skill-btn.active { color: #030b13; font-weight: 600; }
+  .skill-btn:hover:not(.active) { color: white; }
+
   .skill-item {
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s ease;
     color: inherit;
+    /* Quitamos el transform fijo de aquí para que no choque con la animación de entrada */
   }
-  
+
+  .skill-item:hover { transform: translateY(-5px) scale(1.05) !important; }
+
   .skill-item::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to top,
-      rgba(209, 213, 219, 0.5) 0%,
-      transparent 100%
-    );
+    inset: 0;
+    background: linear-gradient(to top, rgba(209, 213, 219, 0.5) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 0;
     pointer-events: none;
   }
-  
-  .skill-item:hover {
-    transform: translateY(-2px);
-  }
-  
-  /* Aplicar el gradiente con el color del ícono */
+
   .skill-item:hover::before {
     opacity: 0.2;
-    background: linear-gradient(
-      135deg,
-      currentColor 0%,
-      transparent 100%
-    );
+    background: linear-gradient(135deg, currentColor 0%, transparent 100%);
   }
-  
-  /* Asegurar que el contenido esté por encima del gradiente */
-  .skill-item > * {
-    position: relative;
-    z-index: 1;
-  }
+
+  .skill-item > * { position: relative; z-index: 1; }
 </style>
