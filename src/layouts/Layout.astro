@@ -1,30 +1,62 @@
 ---
-import Footer from "../components/footer.astro"
-import Header from "../components/header.astro"
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
+
 interface Props {
-	title: string
-	description: string
+  title: string;
+  description: string;
 }
 
-import "../styles/global.css"
-const { description, title } = Astro.props
+import "../styles/global.css";
+const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/LA.svg" />
-		<link rel="stylesheet" href="https://hackernoon.com/hn-icon.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description}>
-		<title>LA dev</title>
-	</head>
-	<body>
-		<Header/>
-		<slot />
-		<Footer/>
-	</body>
+<html lang="es"> <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ladev.vercel.app" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ladev.vercel.app/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://ladev.vercel.app/banner.png" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://ladev.vercel.app/banner.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/LA.svg" />
+    <link rel="stylesheet" href="https://hackernoon.com/hn-icon.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Luis Alvarez",
+        "jobTitle": "Desarrollador de Software",
+        "url": "https://ladev.vercel.app",
+        "sameAs": [
+          "https://github.com/luis-alvarezf10",
+          "https://www.linkedin.com/in/luis-álvarez-franceschi-a2080b225/"
+        ],
+        "description": "Desarrollador de software especializado en aplicaciones multiplataforma y web."
+      }
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
