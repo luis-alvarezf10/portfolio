@@ -1,0 +1,51 @@
+<div class="absolute top-25 right-8 md:top-8 md:right-5 flex gap-2 z-50">
+  <div class="relative flex flex-col items-center" x-data="{ open: false }">
+    <button 
+      @click="open = !open" 
+      class="size-4 md:size-3 bg-red-500 rounded-full hover:scale-125 transition-transform cursor-pointer"
+    ></button>
+    
+    <div 
+      x-show="open" 
+      x-transition 
+      @click.away="open = false"
+      class="absolute top-5 right-0 mt-2 w-32 p-2 shadow-xl border border-white/10 rounded-xl bg-[#010b13]/80 backdrop-blur-lg z-50 text-xs"
+    >
+      <p>¡Gracias por visitar mi portafolio!</p>
+    </div>
+  </div>
+
+  <div class="relative flex flex-col items-center" x-data="{ open: false }">
+    <button 
+      @click="open = !open" 
+      class="size-4 md:size-3 bg-yellow-500 rounded-full hover:scale-125 transition-transform cursor-pointer"
+    ></button>
+    
+    <div 
+      x-show="open" 
+      x-transition 
+      @click.away="open = false"
+      class="absolute top-5 right-0 mt-2 w-32 p-2  shadow-xl border border-white/10 rounded-xl bg-[#010b13]/80 backdrop-blur-lg z-50 text-xs"
+    >
+      <p>¡Trabajemos juntos!</p>
+    </div>
+  </div>
+
+  <div class="relative flex flex-col items-center" x-data="{ open: false }">
+    <button 
+      @click="open = !open" 
+      class="size-4 md:size-3 bg-emerald-500 rounded-full hover:scale-125 transition-transform cursor-pointer"
+    ></button>
+    
+    <div 
+      x-show="open" 
+      x-transition 
+      @click.away="open = false"
+      class="absolute top-5 right-0 mt-2 w-32 p-2  shadow-xl border border-white/10 rounded-xl bg-[#010b13]/80 backdrop-blur-lg z-50 text-xs"
+    >
+      <p>¡Contáctame si tienes algo en mente!</p>
+    </div>
+  </div>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
