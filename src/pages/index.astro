@@ -8,6 +8,7 @@ import ContactSection from '../components/ContactSection.astro'
 import WorkExperience from '../sections/ExperienceSection.astro';
 import NavigationButtons from '../components/NavigationButtons.astro';
 import DotsDecoration from '../components/DotsDecoration.astro';
+import { BeamsUpstream } from '@/components/ui/beams-upstream';
 
 ---
 
@@ -19,6 +20,7 @@ description="Desarrollador de software especializado en aplicaciones multiplataf
     <div class="gradient-blob gradient-blob-1 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
     <div class="gradient-blob gradient-blob-2 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
     <div class="gradient-blob gradient-blob-3 absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+    <BeamsUpstream className='fixed -z-10' />
   </div>
   <HeroSection />
 	<AboutSection />
