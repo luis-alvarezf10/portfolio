@@ -1,79 +1,69 @@
 ---
 import SocialMedia from "../components/SocialMedia.astro";
 ---
-
-<section
-  id="contact"
-  class="relative min-h-[100dvh] flex flex-col items-center justify-center py-12"
->
-  <div class="bento-container mx-auto w-[80%] md:w-[80%] lg:w-full z-10 py-5">
-    <form
-      id="contact-form"
-      class="parent relative overflow-hidden py-5"
-    >
-      <div class="div1 card bento-card group rounded-xl relative overflow-hidden mt-2">
-        <div
-          class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
-          style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.15), transparent 40%);"
-        ></div>
+<section id="contact" class="relative min-h-[100dvh] flex flex-col items-center justify-center py-12">
+  <div class="bento-container mx-auto w-[90%] md:w-[80%] lg:w-full z-10 py-5">
+    <form id="contact-form" class="parent relative overflow-hidden py-5">
+      
+      <div class="div1 card bento-card group rounded-xl relative overflow-hidden p-6 border border-white/10 bg-[#0a0a0a]">
+        <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
+          style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.15), transparent 40%);">
+        </div>
         <div class="relative z-20">
-          <h2 class="">¿Tienes alguna idea o proyecto en mente?</h2>
+          <h2 class="text-2xl font-bold text-white mb-4">¿Tienes alguna idea o proyecto en mente?</h2>
           <SocialMedia />
         </div>
       </div>
 
-      <div class="div2 card bento-card group rounded-xl relative overflow-hidden">
-        <div
-          class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
-          style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.15), transparent 40%);"
-        ></div>
-        <div class="relative z-20">
-          <h3 class="">Información</h3>
-          <div class="grid py-3 h-full">
+      <div class="div2 card bento-card group rounded-xl relative overflow-hidden p-6 border border-white/10 bg-[#0a0a0a]">
+        <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
+          style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.15), transparent 40%);">
+        </div>
+        <div class="relative z-20 h-full flex flex-col">
+          <h3 class="text-lg font-semibold text-white mb-4">Información</h3>
+          <div class="flex flex-col gap-3">
             <input
               type="text"
               name="user_name"
               placeholder="Nombre o Razón Social"
-              class="w-full rounded bg-white/5 border border-white/10 focus:border-[#07f9a2]/50 outline-none transition"
+              class="w-full p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-500 focus:border-[#07f9a2]/50 focus:ring-1 focus:ring-[#07f9a2]/50 outline-none transition"
               required
             />
             <input
               type="email"
               name="user_email"
               placeholder="Email"
-              class="w-full mt-2 rounded bg-white/5 border border-white/10 focus:border-[#07f9a2]/50 outline-none transition"
+              class="w-full p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-500 focus:border-[#07f9a2]/50 focus:ring-1 focus:ring-[#07f9a2]/50 outline-none transition"
               required
             />
             <input
               type="tel"
               name="user_phone"
               placeholder="Teléfono"
-              class="w-full mt-2 rounded bg-white/5 border border-white/10 focus:border-[#07f9a2]/50 outline-none transition"
+              class="w-full p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-500 focus:border-[#07f9a2]/50 focus:ring-1 focus:ring-[#07f9a2]/50 outline-none transition"
             />
           </div>
         </div>
       </div>
 
-      <div class="div3 card bento-card group rounded-xl relative overflow-hidden">
-        <div
-          class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
-          style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.15), transparent 40%);"
-        ></div>
-        <div class="relative z-20">
-          <h3 class="">Mensaje</h3>
+      <div class="div3 card bento-card group rounded-xl relative overflow-hidden p-6 border border-white/10 bg-[#0a0a0a]">
+        <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
+          style="background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.15), transparent 40%);">
+        </div>
+        <div class="relative z-20 h-full flex flex-col">
+          <h3 class="text-lg font-semibold text-white mb-4">Mensaje</h3>
           <textarea
             name="message"
             placeholder="Escribe tu mensaje aquí..."
-            class="w-full h-full p-2 mt-2 rounded bg-white/5 border border-white/10 focus:border-[#07f9a2]/50 outline-none transition min-h-[110px] resize-none"
+            class="w-full flex-grow p-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-gray-500 focus:border-[#07f9a2]/50 focus:ring-1 focus:ring-[#07f9a2]/50 outline-none transition min-h-[120px] resize-none"
             required></textarea>
         </div>
       </div>
 
-      <div class="div4 card bento-card group rounded-xl flex justify-center relative overflow-hidden">
-        <div
-          class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
-          style="background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.2), transparent 40%);"
-        ></div>
+      <div class="div4 card bento-card group rounded-xl relative overflow-hidden border border-white/10 bg-[#0a0a0a]">
+        <div class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-500 z-10"
+          style="background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(7, 249, 162, 0.2), transparent 40%);">
+        </div>
         <button type="submit" class="button w-full relative z-20">Enviar</button>
       </div>
     </form>
