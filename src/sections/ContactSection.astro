@@ -1,33 +1,70 @@
 ---
-    import SocialMedia from './SocialMedia.astro'
+    import SocialMedia from '../components/SocialMedia.astro';
 ---
 
 
 <section id="contact" class="min-h-[100dvh] flex flex-col items-center justify-center py-12">
     <div class="mx-auto w-[80%] md:w-[80%] lg:w-full">
-        <div class="parent">
+        <form id="contact-form" class="parent">
             <div class="div1 card rounded-xl">
                 <h2>¿Tienes alguna idea o proyecto en mente?</h2>
                 <SocialMedia/>
             </div>
+            
             <div class="div2 card rounded-xl">
-                <h3>Nombre</h3>
+                <h3>Información</h3>
                 <div class="grid py-3 h-full">
-                    <input type="text" placeholder="Nombre" class="w-full p-2 rounded bg-white/5 border border-white/10">
-                    <input type="email" placeholder="Email" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10">
-                    <input type="tel" placeholder="Teléfono" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10">
+                    <input type="text" name="user_name" placeholder="Nombre o Razón Social" class="w-full p-2 rounded bg-white/5 border border-white/10" required>
+                    <input type="email" name="user_email" placeholder="Email" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10" required>
+                    <input type="tel" name="user_phone" placeholder="Teléfono" class="w-full p-2 mt-2 rounded bg-white/5 border border-white/10">
                 </div>
             </div>
+
             <div class="div3 card rounded-xl">
                 <h3>Mensaje</h3>
-                <textarea placeholder="Escribe tu mensaje aquí..." class="w-full h-full p-2 mt-2 rounded bg-white/5 border border-white/10"></textarea>
+                <textarea name="message" placeholder="Escribe tu mensaje aquí..." class="w-full h-full p-2 mt-2 rounded bg-white/5 border border-white/10" required></textarea>
             </div>
+
             <div class="div4 card rounded-xl flex justify-center">
-                <button class="button w-full">Enviar</button>
+                <button type="submit" class="button w-full">Enviar</button>
             </div>
-        </div>  
+        </form>  
     </div>
 </section>
+
+<script>
+  import emailjs from '@emailjs/browser';
+
+  const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const serviceID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.PUBLIC_EMAILJS_KEY;
+
+    const btn = contactForm.querySelector('button');
+    if (btn) btn.innerText = 'Enviando...';
+
+    try {
+      await emailjs.sendForm(
+        serviceID, 
+        templateID,  
+        contactForm,
+        publicKey  
+      );
+
+      alert('¡Mensaje enviado con éxito!');
+      contactForm.reset();
+    } catch (error) {
+      console.error('Error al enviar:', error);
+      alert('Ocurrió un error. Intenta de nuevo.');
+    } finally {
+      if (btn) btn.innerText = 'Enviar';
+    }
+  });
+</script>
 
 <style>
 
