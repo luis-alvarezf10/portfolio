@@ -12,9 +12,11 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es"> <head>
+<html lang="es">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#030b13" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://ladev.vercel.app" />
 
@@ -52,7 +54,7 @@ const { description, title } = Astro.props;
       }
     </script>
   </head>
-  <body>
+  <body class="bg-[#030b13] text-[#e6edf3] terminal-scanlines overflow-x-hidden">
     <Header />
     <main>
       <slot />

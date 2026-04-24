@@ -1,210 +1,192 @@
 ---
 import logo from "../assets/LA.svg";
-import IconButton from "../components/buttons/IconButton.astro"
 
-const links: { name: string; href: string }[] = [
-  { name: "Inicio", href: "#home" },
-  { name: "Sobre mí", href: "#about" },
-  { name: "Trabajo", href: "#experience"},
-  { name: "Tecnologías", href: "#technologies" },
-  // { name: "Proyectos", href: "#projects" },
+const links: { name: string; href: string; cmd: string }[] = [
+  { name: "home",         href: "#home",         cmd: "~" },
+  { name: "about",        href: "#about",        cmd: "~/about" },
+  { name: "experience",   href: "#experience",   cmd: "~/exp" },
+  { name: "stack",        href: "#technologies", cmd: "~/stack" },
+  { name: "projects",     href: "#projects",     cmd: "~/projects" },
 ];
 ---
 
-<header class="flex justify-between items-center h-15 w-[90%] md:w-[80%] lg:w-[60%] mx-auto sticky px-4 top-2 z-55 py-4 border border-white/10 rounded-xl bg-[#010b13]/80 backdrop-blur-lg">
-  <!-- Logo -->
-  <div class="flex gap-2">
-    <a href="#home" class="flex items-center gap-2">
-      <img src={logo.src} alt="logo de Luis Alvarez" width="25" />
-      <span class="text-xl font-semibold"><strong class="text-[#07f9a2]">.</strong>dev</span>
-    </a>
-  </div>
+<header
+  class="sticky top-3 z-50 mx-auto flex h-14 w-[92%] md:w-[88%] lg:w-[72%] items-center justify-between rounded-lg border border-[color:var(--terminal-border-strong)] bg-[color:var(--terminal-surface)]/85 px-3 md:px-4 backdrop-blur-xl shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)]"
+>
+  <!-- Logo / path -->
+  <a href="#home" class="flex items-center gap-2 text-sm">
+    <img src={logo.src} alt="Logo Luis Álvarez" width="22" height="22" />
+    <span class="hidden sm:flex items-center gap-1 text-[color:var(--terminal-muted)]">
+      <span class="text-[color:var(--terminal-green)]">luis</span>
+      <span class="text-[color:var(--terminal-comment)]">@</span>
+      <span>portfolio</span>
+      <span class="text-[color:var(--terminal-comment)]">:</span>
+      <span id="active-path" class="text-[color:var(--terminal-green)]">~</span>
+      <span class="text-[color:var(--terminal-comment)]">$</span>
+    </span>
+  </a>
 
-  <!-- Menú en escritorio -->
-  <nav class="hidden md:flex gap-5">
-    <ul class="flex gap-5 items-center">
+  <!-- Desktop nav -->
+  <nav class="hidden md:block" aria-label="Navegación principal">
+    <ul class="flex items-center gap-1 text-sm">
       {links.map((link) => (
         <li>
           <a
             href={link.href}
-            class="font-semibold hover:text-gray-300 transition-colors relative group"
             data-section={link.href.substring(1)}
+            data-cmd={link.cmd}
+            class="nav-link group inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[color:var(--terminal-muted)] transition-colors hover:text-[color:var(--terminal-green)]"
           >
-            {link.name}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#07f9a2] transition-all duration-300 group-hover:w-full"></span>
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#07f9a2] transition-all duration-300 active-section"></span>
+            <span class="text-[color:var(--terminal-comment)] group-hover:text-[color:var(--terminal-green)]">./</span>
+            <span>{link.name}</span>
           </a>
         </li>
       ))}
       <li>
         <a
           href="#contact"
-          class="text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl py-1 px-4 font-semibold italic"
+          class="ml-1 inline-flex items-center gap-2 rounded-md border border-[color:var(--terminal-green-dim)] bg-[color:var(--terminal-green-faint)] px-3 py-1.5 text-sm font-semibold text-[color:var(--terminal-green)] transition-all hover:bg-[color:var(--terminal-green)] hover:text-[#030b13]"
         >
-          Contáctame!
+          <span>./contact</span>
+          <span class="blink">_</span>
         </a>
       </li>
     </ul>
   </nav>
 
-  <!-- Botón hamburguesa -->
+  <!-- Mobile menu button -->
   <button
     id="menu-btn"
-    class="md:hidden text-2xl text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl flex items-center justify-center w-10 h-10 focus:outline-none"
+    class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md border border-[color:var(--terminal-green-dim)] bg-[color:var(--terminal-green-faint)] text-[color:var(--terminal-green)]"
     aria-label="Abrir menú"
   >
     <i class="hn hn-bars-solid"></i>
   </button>
 </header>
 
-<!-- Drawer lateral -->
+<!-- Mobile drawer -->
 <div
   id="mobile-menu"
-  class="fixed top-0 right-0 h-screen w-64 bg-[#010b13]/95 border-l border-white/10 shadow-lg p-6 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out z-55 md:hidden"
+  class="fixed right-0 top-0 z-[60] h-screen w-72 translate-x-full border-l border-[color:var(--terminal-border-strong)] bg-[color:var(--terminal-surface)]/95 p-6 backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden"
 >
-  <!-- Botón cerrar -->
-  <button id="close-btn" class="text-2xl text-[#07f9a2] w-10 h-10 flex items-center justify-center absolute top-4 right-13">
-    <i class="hn hn-times-solid"></i>
-  </button>
+  <div class="flex items-center justify-between border-b border-[color:var(--terminal-border)] pb-3">
+    <span class="text-xs text-[color:var(--terminal-muted)]">~/menu</span>
+    <button id="close-btn" class="text-[color:var(--terminal-green)]" aria-label="Cerrar menú">
+      <i class="hn hn-times-solid text-xl"></i>
+    </button>
+  </div>
 
-  <ul class="flex flex-col gap-6 mt-12">
+  <ul class="mt-6 flex flex-col gap-2 text-sm">
     {links.map((link) => (
       <li>
         <a
           href={link.href}
-          class="font-semibold text-lg hover:text-gray-300 transition-colors"
+          class="flex items-center gap-2 rounded-md px-2 py-2 text-[color:var(--terminal-muted)] hover:bg-[color:var(--terminal-green-faint)] hover:text-[color:var(--terminal-green)]"
         >
-          {link.name}
+          <span class="text-[color:var(--terminal-comment)]">$</span>
+          <span>cd {link.cmd}</span>
         </a>
       </li>
     ))}
-    <li>
+    <li class="mt-2">
       <a
         href="#contact"
-        class="text-[#07f9a2] bg-[#07f9a2]/10 border border-[#07f9a2]/5 rounded-xl py-2 px-6 font-semibold shadow-white/40 hover:shadow-md transition transform hover:scale-105 italic"
+        class="flex items-center justify-between rounded-md border border-[color:var(--terminal-green-dim)] bg-[color:var(--terminal-green-faint)] px-3 py-2 font-semibold text-[color:var(--terminal-green)]"
       >
-        Contáctame!
+        <span>./contact</span>
+        <span class="blink">_</span>
       </a>
     </li>
   </ul>
 </div>
 
-<!-- Script para toggle + smooth scroll -->
 <script is:inline>
   const menuBtn = document.getElementById("menu-btn");
   const closeBtn = document.getElementById("close-btn");
   const mobileMenu = document.getElementById("mobile-menu");
+  const activePathEl = document.getElementById("active-path");
 
-  const openMenu = () => mobileMenu.classList.remove("translate-x-full");
-  const closeMenu = () => mobileMenu.classList.add("translate-x-full");
+  const openMenu = () => mobileMenu && mobileMenu.classList.remove("translate-x-full");
+  const closeMenu = () => mobileMenu && mobileMenu.classList.add("translate-x-full");
 
-  menuBtn.addEventListener("click", openMenu);
-  closeBtn.addEventListener("click", closeMenu);
-  document.addEventListener('DOMContentLoaded', () => {
-    updateActiveSection();
-    
-    // Agregar un pequeño retraso para asegurar que el DOM esté completamente cargado
-    setTimeout(updateActiveSection, 100);
+  if (menuBtn) menuBtn.addEventListener("click", openMenu);
+  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const targetId = anchor.getAttribute("href");
+      if (!targetId) return;
+      e.preventDefault();
+      if (targetId === "#" || targetId === "#home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const el = document.querySelector(targetId);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      closeMenu();
+    });
   });
-  
-  // Ejecutar al hacer scroll con debounce para mejorar rendimiento
-  let isScrolling;
-  window.addEventListener('scroll', () => {
-    window.clearTimeout(isScrolling);
-    isScrolling = setTimeout(() => {
-      updateActiveSection();
-    }, 50);
-  }, false);
 
-  function updateActiveSection() {
-    // Obtener todas las secciones con ID
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    
-    // Si no hay secciones, salir
+  // Active section highlighting
+  function setActive() {
+    const sections = Array.from(document.querySelectorAll("section[id], main[id]"));
     if (sections.length === 0) return;
-    
-    // Ocultar todos los indicadores
-    document.querySelectorAll('.active-section').forEach(indicator => {
-      indicator.style.width = '0%';
-    });
-    
-    // Si estamos en la parte superior de la página, activar el enlace de inicio
-    if (window.scrollY < 100) {
-      const homeLink = document.querySelector('a[data-section="home"]');
-      if (homeLink) {
-        const activeIndicator = homeLink.querySelector('.active-section');
-        if (activeIndicator) {
-          activeIndicator.style.width = '100%';
+
+    let activeId = "home";
+    if (window.scrollY < 120) {
+      activeId = "home";
+    } else {
+      const center = window.scrollY + window.innerHeight / 2;
+      let minDist = Infinity;
+      sections.forEach((s) => {
+        const rect = s.getBoundingClientRect();
+        const mid = window.scrollY + rect.top + rect.height / 2;
+        const d = Math.abs(mid - center);
+        if (d < minDist) {
+          minDist = d;
+          activeId = s.id;
         }
-      }
-      return;
+      });
     }
-    
-    // Encontrar la sección más cercana al centro de la ventana
-    const viewportCenter = window.scrollY + (window.innerHeight / 2);
-    let closestSection = null;
-    let minDistance = Infinity;
-    
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      const sectionMiddle = window.scrollY + rect.top + (rect.height / 2);
-      const distance = Math.abs(viewportCenter - sectionMiddle);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestSection = section;
+
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      const section = link.getAttribute("data-section");
+      if (section === activeId) {
+        link.classList.add("is-active");
+      } else {
+        link.classList.remove("is-active");
       }
     });
-    
-    // Si encontramos una sección cercana, activar su indicador
-    if (closestSection) {
-      const sectionId = closestSection.getAttribute('id');
-      if (sectionId) {
-        const menuLink = document.querySelector(`a[data-section="${sectionId}"]`);
-        if (menuLink) {
-          const activeIndicator = menuLink.querySelector('.active-section');
-          if (activeIndicator) {
-            activeIndicator.style.width = '100%';
-          }
-        }
-      }
-    }
-    
-    // Activar solo la sección más cercana
-    if (closestSection) {
-      const sectionId = closestSection.getAttribute('id');
-      const menuLink = document.querySelector(`a[data-section="${sectionId}"]`);
-      
-      if (menuLink) {
-        const activeIndicator = menuLink.querySelector('.active-section');
-        activeIndicator.style.width = '100%';
+
+    if (activePathEl) {
+      const activeLink = document.querySelector('.nav-link[data-section="' + activeId + '"]');
+      if (activeLink) {
+        activePathEl.textContent = activeLink.getAttribute("data-cmd") || "~";
       }
     }
   }
 
-  // Smooth scroll + cerrar drawer
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = anchor.getAttribute("href");
-      
-      // Manejar el caso especial del inicio
-      if (targetId === "#" || targetId === "#home") {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-        closeMenu();
-        return;
-      }
-      
-      if (!targetId) return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-        closeMenu();
-      }
-    });
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        setActive();
+        ticking = false;
+      });
+      ticking = true;
+    }
   });
+  document.addEventListener("DOMContentLoaded", setActive);
+  setActive();
 </script>
+
+<style>
+  .nav-link.is-active {
+    color: var(--terminal-green);
+    background-color: var(--terminal-green-faint);
+  }
+  .nav-link.is-active span:first-child {
+    color: var(--terminal-green);
+  }
+</style>

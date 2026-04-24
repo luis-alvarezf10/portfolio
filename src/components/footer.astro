@@ -1,22 +1,40 @@
 ---
 import logo from "../assets/LA.svg";
+const year = new Date().getFullYear();
 ---
-<footer class="w-[90%] md:w-[80%] lg:w-[60%] mx-auto border border-white/10 rounded-xl bg-white/5 ">
-    <div class="w-[90%] mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <div class="flex gap-2">
-            <a href="#home" class="flex items-center gap-2">
-              <img src={logo.src} alt="logo de Luis Alvarez" width="25" />
-              <span class="text-xl font-semibold"><strong class="text-[#07f9a2]">.</strong>dev</span>
-            </a>
-        </div>
-        <span class="text-sm text-[#07f9a2]">Gracias por visitar mi portafolio!</span>
-        <!-- <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-            <li>
-                <a href="#home" data-section="home" class="hover:underline me-4 md:me-6">Inicio</a>
-            </li>
-            <li>
-                <a href="#contact" data-section="contact" class="hover:underline">Contacto</a>
-            </li>
-        </ul> -->
+
+<footer class="mt-16 pb-6">
+  <div class="mx-auto w-[92%] md:w-[88%] lg:w-[72%]">
+    <!-- Ascii-ish divider -->
+    <div class="glow-underline mb-5"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-3 rounded-md border border-[color:var(--terminal-border-strong)] bg-[color:var(--terminal-surface)]/80 px-4 py-3 text-xs font-mono backdrop-blur-md">
+      <!-- Left: logo + identity -->
+      <div class="flex items-center gap-2 text-[color:var(--terminal-muted)]">
+        <img src={logo.src} alt="Logo Luis Álvarez" width="18" height="18" />
+        <span><span class="text-[color:var(--terminal-green)]">.</span>dev</span>
+        <span class="text-[color:var(--terminal-comment)]">·</span>
+        <span>luis alvarez © {year}</span>
+      </div>
+
+      <!-- Center: status -->
+      <div class="flex items-center justify-center gap-2">
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-[color:var(--terminal-green)] shadow-[0_0_8px_rgba(7,249,162,0.8)]"></span>
+        <span class="text-[color:var(--terminal-green)]">STATUS: ONLINE</span>
+        <span class="text-[color:var(--terminal-comment)]">·</span>
+        <span class="text-[color:var(--terminal-muted)]">BUILD: v2.0</span>
+      </div>
+
+      <!-- Right: meta -->
+      <div class="flex items-center justify-start md:justify-end gap-2 text-[color:var(--terminal-muted)]">
+        <span>INS</span>
+        <span class="text-[color:var(--terminal-comment)]">·</span>
+        <span>UTF-8</span>
+        <span class="text-[color:var(--terminal-comment)]">·</span>
+        <a href="#home" class="hover:text-[color:var(--terminal-green)] transition-colors">
+          top <span class="text-[color:var(--terminal-green)]">↑</span>
+        </a>
+      </div>
     </div>
+  </div>
 </footer>

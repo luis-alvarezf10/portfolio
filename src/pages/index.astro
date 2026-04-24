@@ -1,93 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import profile from '../assets/foto-carnet.jpg'
 import HeroSection from '../sections/HeroSection.astro';
-import AboutSection from '../sections/AboutSection.astro'
-import Projects from '../components/Projects.astro'
-import ContactSection from '../sections/ContactSection.astro'
-import WorkExperience from '../sections/ExperienceSection.astro';
+import AboutSection from '../sections/AboutSection.astro';
+import Projects from '../components/Projects.astro';
+import ContactSection from '../sections/ContactSection.astro';
 import NavigationButtons from '../components/NavigationButtons.astro';
-import DotsDecoration from '../components/DotsDecoration.astro';
-import { BeamsUpstream } from '@/components/ui/beams-upstream';
-
 ---
 
-<Layout title="Luis Alvarez - desarollador software Fullstack & Mobile"
-description="Desarrollador de software especializado en aplicaciones multiplataforma y web. Transforma tus ideas en productos digitales escalables con Luis Álvarez. ¡Mira mis proyectos!">
-  <NavigationButtons/>
-  <DotsDecoration/>
-  <div class="fixed inset-0 -z-10 overflow-hidden">
-    <div class="gradient-blob gradient-blob-1 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
-    <div class="gradient-blob gradient-blob-2 absolute h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(7,249,162,0.15),rgba(255,255,255,0))]"></div>
-    <div class="gradient-blob gradient-blob-3 absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+<Layout
+  title="Luis Alvarez - Desarrollador Fullstack & Mobile"
+  description="Desarrollador de software especializado en aplicaciones multiplataforma y web. Transforma tus ideas en productos digitales escalables con Luis Álvarez."
+>
+  <NavigationButtons />
+
+  <!-- Fondo: grid de terminal + vignette -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 terminal-grid"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(7,249,162,0.08),transparent_60%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(7,249,162,0.04),transparent_70%)]"></div>
   </div>
+
   <HeroSection />
-	<AboutSection />
-  <!-- <Projects /> -->
+  <AboutSection />
+  <Projects />
   <ContactSection />
-  <BeamsUpstream className='fixed inset-0 -z-10 w-screen h-[100dvh] scale-110 object-cover' />
 </Layout>
-
-<style>
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-@keyframes float1 {
-  0%, 100% {
-    transform: translate(-50%, 0%) scale(1);
-  }
-  33% {
-    transform: translate(-30%, 20%) scale(1.1);
-  }
-  66% {
-    transform: translate(-70%, -10%) scale(0.9);
-  }
-}
-
-@keyframes float2 {
-  0%, 100% {
-    transform: translate(50%, 0%) scale(1);
-  }
-  33% {
-    transform: translate(70%, -15%) scale(0.9);
-  }
-  66% {
-    transform: translate(30%, 25%) scale(1.1);
-  }
-}
-
-@keyframes float3 {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.gradient-blob {
-  filter: blur(60px);
-}
-
-.gradient-blob-1 {
-  top: 10%;
-  left: 0;
-  animation: float1 20s ease-in-out infinite;
-}
-
-.gradient-blob-2 {
-  top: 40%;
-  right: 0;
-  animation: float2 25s ease-in-out infinite;
-}
-
-.gradient-blob-3 {
-  animation: float3 15s ease-in-out infinite;
-}
-
-</style>

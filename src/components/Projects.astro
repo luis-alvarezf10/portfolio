@@ -1,120 +1,175 @@
 ---
 const projectsData = [
-  { name: "Axiology Document Manager", 
+  {
+    name: "axiology-doc-manager",
+    ext: ".py",
     description: "Sistema automatizado de gestión de documentos legales.",
-    technologies: "Python, Flet, PyPDF2",
+    technologies: ["Python", "Flet", "PyPDF2"],
     image: "/images/projects/adm.png",
-    link: "#"
+    link: "#",
+    size: "12.4kb",
+    type: "app",
   },
-  { name: "Pow Fitness", 
-    description: "Pagina web de un gimnasio.",
-    technologies: "React, Tailwind CSS",
+  {
+    name: "pow-fitness",
+    ext: ".web",
+    description: "Página web institucional para un gimnasio.",
+    technologies: ["React", "Tailwind CSS"],
     image: "/images/projects/pow-page.png",
-    link: "#"
+    link: "#",
+    size: "8.1kb",
+    type: "web",
   },
-  { name: "Nex Technology", 
-    description: "Pagina web de una empresa de startup digital.",
-    technologies: "React, Tailwind CSS, Vercel",
+  {
+    name: "nex-technology",
+    ext: ".web",
+    description: "Página web de una startup digital.",
+    technologies: ["React", "Tailwind CSS", "Vercel"],
     image: "/images/projects/nex.png",
-    link: "https://nextechnologyve.vercel.app/"
+    link: "https://nextechnologyve.vercel.app/",
+    size: "9.7kb",
+    type: "web",
   },
-]
+];
+
+const perms = "-rwxr-xr-x";
+const owner = "luis  staff";
 ---
 
-<style>
-  .project-card {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    width: 100%;
-    aspect-ratio: 16/9;
-    background-color: #f5f5f5;
-    backface-visibility: hidden; /* Mejora el rendimiento en algunos navegadores */
-    transform: translateZ(0); /* Acelera la renderización */
-  }
-  
-  .project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  .project-overlay {
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 30%, rgba(0, 0, 0, 0.95) 80%);
-    padding: 1.5rem;
-    color: #ffffff;
-    transform: translateY(100%);
-    will-change: transform; /* Mejora el rendimiento de la animación */
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Timing function más suave */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    /* Eliminamos el backdrop-filter que puede causar lag */
-  }
-  
-  .project-card:hover .project-overlay {
-    transform: translateY(0);
-  }
-  
-  .project-link {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    transition: all 0.3s ease;
-  }
-  
-  .project-link:hover {
-    background: white;
-    transform: scale(1.1);
-  }
-</style>
+<section id="projects" class="py-20 md:py-28">
+  <div class="w-[92%] md:w-[88%] lg:w-[72%] mx-auto">
+    <!-- Header -->
+    <header class="mb-8 flex items-end justify-between flex-wrap gap-4">
+      <div>
+        <p class="text-xs text-[color:var(--terminal-muted)] prompt-line">ls -la ~/projects</p>
+        <h2 class="font-sans text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-1 text-balance">
+          <span class="text-[color:var(--terminal-comment)]">{"//"}</span> projects
+        </h2>
+      </div>
+      <span class="hidden md:inline text-xs text-[color:var(--terminal-comment)]">
+        total {projectsData.length} · showcase
+      </span>
+    </header>
 
-<section id="projects" class="mx-auto w-[80%] md:w-[60%] min-h-screen flex flex-col justify-center py-12 px-4">
-    <h2 class="w-full font-bold text-4xl">Mi Portafolio</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projectsData.map((project, index) => (
-            <div 
-              class="project-card" 
-              style={`background-image: url('${project.image}');`}
-            >
-              {project.link && (
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="project-link"
-                aria-label={`Ver proyecto ${project.name}`}
-              >
-                <i class="hn hn-external-link"></i>
-              </a>
-              )}
-              <div class="project-overlay">
-                <div class="p-4">
-                  <h3 class="text-lg font-bold mb-2 text-white">{project.name}</h3>
-                  <p class="text-sm text-gray-200 mb-3">{project.description}</p>
-                  <p class="text-xs text-gray-300 font-mono bg-white/10 px-2 py-1 rounded-md inline-block">{project.technologies}</p>
-                </div>
+    <!-- Terminal listing -->
+    <div class="tw-window mb-8">
+      <div class="tw-titlebar">
+        <span class="tw-dot tw-dot-red"></span>
+        <span class="tw-dot tw-dot-yellow"></span>
+        <span class="tw-dot tw-dot-green"></span>
+        <span class="flex-1 text-center text-[color:var(--terminal-muted)]">
+          <span class="text-[color:var(--terminal-comment)]">—</span>
+          <span>ls — ~/projects</span>
+        </span>
+      </div>
+      <div class="p-4 md:p-5 text-xs md:text-sm">
+        <p class="text-[color:var(--terminal-comment)] mb-2">total {projectsData.length}</p>
+        <ul class="space-y-1">
+          {
+            projectsData.map((p) => (
+              <li class="grid grid-cols-[auto_auto_auto_auto_1fr] gap-3 md:gap-4 font-mono">
+                <span class="ansi-comment">{perms}</span>
+                <span class="ansi-muted hidden sm:inline">{owner}</span>
+                <span class="ansi-yellow">{p.size}</span>
+                <span class="ansi-comment hidden md:inline">Jan 26 10:42</span>
+                <a
+                  href={`#proj-${p.name}`}
+                  class="text-[color:var(--terminal-green)] hover:underline truncate"
+                >
+                  {p.name}{p.ext}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project cards grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {
+        projectsData.map((project) => (
+          <article
+            id={`proj-${project.name}`}
+            class="project-card term-card group overflow-hidden"
+          >
+            <!-- File header strip -->
+            <header class="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-[color:var(--terminal-border)] bg-black/20">
+              <div class="flex items-center gap-2 min-w-0">
+                <i class="hn hn-folder-solid text-[color:var(--terminal-green)]"></i>
+                <span class="text-sm font-semibold text-[color:var(--terminal-text)] truncate">
+                  {project.name}<span class="text-[color:var(--terminal-comment)]">{project.ext}</span>
+                </span>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <span class="hidden sm:inline text-[10px] uppercase tracking-widest text-[color:var(--terminal-comment)]">{project.type}</span>
+                {project.link && project.link !== "#" && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Abrir ${project.name}`}
+                    class="inline-flex h-7 w-7 items-center justify-center rounded-sm border border-[color:var(--terminal-green-dim)] bg-[color:var(--terminal-green-faint)] text-[color:var(--terminal-green)] hover:bg-[color:var(--terminal-green)] hover:text-[#030b13] transition-colors"
+                  >
+                    <i class="hn hn-external-link text-sm"></i>
+                  </a>
+                )}
+              </div>
+            </header>
+
+            <!-- Preview image -->
+            <div class="relative aspect-[16/9] overflow-hidden bg-black">
+              <img
+                src={project.image}
+                alt={`Preview de ${project.name}`}
+                class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                loading="lazy"
+              />
+              <!-- Subtle scanline + tint overlay -->
+              <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-[color:var(--terminal-bg)]/90 via-transparent to-transparent"></div>
+              <div
+                class="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
+                style="background-image: repeating-linear-gradient(to bottom, rgba(7,249,162,0.08) 0px, rgba(7,249,162,0.08) 1px, transparent 1px, transparent 3px);"
+              ></div>
+              <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
+                <span class="text-[11px] font-mono text-[color:var(--terminal-green)] bg-black/60 px-2 py-0.5 rounded-sm">
+                  $ open {project.name}{project.ext}
+                </span>
               </div>
             </div>
-        ))}
+
+            <!-- Body -->
+            <div class="p-4 md:p-5">
+              <p class="text-sm text-[color:var(--terminal-muted)] leading-relaxed">
+                <span class="text-[color:var(--terminal-comment)]"># </span>
+                {project.description}
+              </p>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {
+                  project.technologies.map((tech) => (
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded-sm border border-[color:var(--terminal-border-strong)] bg-[color:var(--terminal-bg)] text-[color:var(--terminal-green)]">
+                      {tech}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+          </article>
+        ))
+      }
     </div>
+
+    <!-- See more CTA -->
+    <div class="mt-10 flex items-center justify-center">
+      <a
+        href="https://github.com/luis-alvarezf10"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cmd-btn"
+      >
+        <i class="hn hn-github"></i>
+        <span>cd ~/github</span>
+      </a>
+    </div>
+  </div>
 </section>

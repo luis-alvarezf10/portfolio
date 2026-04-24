@@ -1,167 +1,158 @@
 ---
 import { socialLinks } from "../constants/socialLinks";
-import Badge from "../components/badges/Badge.astro";
+
+const stats = [
+  { label: "years_studying",    value: 4,   suffix: "+" },
+  { label: "github_projects",   value: 18,  suffix: "+" },
+  { label: "technologies",      value: 12,  suffix: "+" },
+  { label: "commits",           value: 150, suffix: "+" },
+];
 ---
 
 <main
   id="home"
-  class="min-h-[100dvh] flex flex-col items-start justify-center gap-6 md:gap-10 w-[80%] md:w-[80%] lg:w-[60%] mx-auto py-4 relative"
+  class="relative min-h-[100dvh] flex flex-col items-center justify-center w-[92%] md:w-[88%] lg:w-[72%] mx-auto pt-24 pb-10"
 >
-  <div
-    class="flex flex-col-reverse md:flex-row items-start md:items-center gap-4 justify-between w-full"
-  >
-    <div class="flex gap-2 text-3xl md:text-2xl lg:text-5xl font-bold">
-      <span>Hola! Soy </span>
-      <h1 >
-        Luis Álvarez
-      </h1>
-    </div>
-    <img
-      src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif"
-      width="35"
-      class="hidden lg:inline"
-    />
-    <Badge variant="green">
-      <i class="hn hn-check"></i>
-      Disponible
-    </Badge>
+  <!-- Status strip -->
+  <div class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[color:var(--terminal-muted)]">
+    <span class="inline-flex items-center gap-2">
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-[color:var(--terminal-green)] shadow-[0_0_8px_rgba(7,249,162,0.8)]"></span>
+      <span class="text-[color:var(--terminal-green)]">available</span>
+      <span class="text-[color:var(--terminal-comment)]">// open to work</span>
+    </span>
+    <span class="text-[color:var(--terminal-comment)]">│</span>
+    <span>location: <span class="text-[color:var(--terminal-text)]">VE</span></span>
+    <span class="text-[color:var(--terminal-comment)]">│</span>
+    <span>uptime: <span class="text-[color:var(--terminal-text)]">4y+</span></span>
   </div>
-  <p class="text-xl md:text-lg lg:text-xl">
-    Estudiante de <span class="text-[#07f9a2] italic"
-      >ingeniería de sistemas</span
-    >, apasionado en <br class="block lg:hidden" /><span
-      id="typewriter"
-      class="text-[#07f9a2] font-mono"></span>
-  </p>
-  <div
-    class="flex flex-col md:flex-row justify-center md:justify-between items-start md:items-center gap-5 md:w-full"
-  >
-    <ul class="flex items-center gap-4">
-      {
-        socialLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group flex items-center gap-2 p-2 rounded-xl border border-white/10 bg-white/5 
-         transition-all duration-300 ease-out
-         hover:scale-110 hover:border-[#07f9a2]/40 hover:bg-[#07f9a2]/10 
-         hover:shadow-[0_0_20px_rgba(7,249,162,0.2)]"
-            >
-              <i
-                class={`${link.icon} text-2xl transition-transform duration-300 group-hover:rotate-5 group-hover:text-[#07f9a2]`}
-              />
-              <span class="hidden lg:inline font-medium group-hover:text-[#07f9a2] transition-colors">
-                {link.name}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <a
-      class="button-hover bg-[#07f9a2] py-2 px-10 flex items-center gap-5 text-[#030b13] font-bold cursor-pointer rounded-xl w-full md:w-auto justify-center relative overflow-hidden bg-[#07f9a2] text-[#030b13] hover:shadow-[0_0_20px_rgba(7,249,162,0.4)] hover:brightness-110 transition-all duration-300 active:scale-95"
-      href="https://drive.google.com/drive/folders/1iy9-dpCE63PiNxx4-xOQoj8nf2VvCCsd?usp=drive_link"
-      target="_blank"
-    >
-      <span class="relative z-0">Descargar CV</span>
-      <i class="hn hn-download-solid relative"></i>
-    </a>
-  </div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full mt-10 mb-12">
-  {
-    [
-      { label: "Años de estudio", value: 4, suffix: "+" },
-      { label: "Proyectos Github", value: 18, suffix: "+" },
-      { label: "Tecnologías", value: 12, suffix: "+" },
-      { label: "Commits", value: 150, suffix: "+" },
-    ].map((stat) => (
-      <div class="flex flex-col items-start opacity-0 translate-y-4 animate-on-scroll">
-        <div class="flex items-baseline gap-1">
-          <span
-            class="text-2xl md:text-4xl font-bold text-[#07f9a2] counter"
-            data-target={stat.value}
-          >
-            0
-          </span>
-          <span class="text-xl font-bold text-[#07f9a2]">{stat.suffix}</span>
-        </div>
-        <span class="text-[10px] lg:text-xs text-gray-400 uppercase tracking-[0.2em] font-semibold leading-tight">
-          {stat.label}
-        </span>
+
+  <!-- Terminal window -->
+  <div class="tw-window w-full animate-fade-up">
+    <!-- Title bar -->
+    <div class="tw-titlebar">
+      <span class="tw-dot tw-dot-red"></span>
+      <span class="tw-dot tw-dot-yellow"></span>
+      <span class="tw-dot tw-dot-green"></span>
+      <div class="flex-1 text-center select-none">
+        <span class="text-[color:var(--terminal-comment)]">—</span>
+        <span class="text-[color:var(--terminal-muted)]">luis@portfolio</span>
+        <span class="text-[color:var(--terminal-comment)]">:</span>
+        <span class="text-[color:var(--terminal-green)]">~</span>
+        <span class="text-[color:var(--terminal-comment)]"> — zsh — 80×24</span>
       </div>
-    ))
-  }
-</div>
+      <span class="text-[10px] text-[color:var(--terminal-comment)] hidden sm:inline">v2.0.0</span>
+    </div>
 
-  <script>
-  // @ts-ignore
-    const startCounter = (el) => {
-      const target = parseInt(el.getAttribute("data-target"));
-      const duration = 2000; // 2 segundos
-      const step = target / (duration / 16); // 60fps aprox
-      let current = 0;
+    <!-- Body -->
+    <div class="px-5 md:px-8 py-6 md:py-8 text-sm md:text-[15px] leading-relaxed">
+      <!-- whoami -->
+      <div class="flex items-start gap-2">
+        <span class="text-[color:var(--terminal-green)] font-bold select-none">$</span>
+        <span>whoami</span>
+      </div>
+      <h1 class="mt-2 pl-4 font-sans text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+        Luis <span class="text-[color:var(--terminal-green)]">Álvarez</span> Franceschi
+      </h1>
+      <p class="pl-4 mt-1 text-[color:var(--terminal-muted)]">
+        <span class="text-[color:var(--terminal-comment)]">// </span>
+        Fullstack &amp; Mobile Developer — Ingeniería de Sistemas
+      </p>
 
-      const update = () => {
-        current += step;
-        if (current < target) {
-          el.innerText = Math.floor(current);
-          requestAnimationFrame(update);
-        } else {
-          el.innerText = target;
+      <div class="my-5 glow-underline"></div>
+
+      <!-- role / passions -->
+      <div class="flex items-start gap-2">
+        <span class="text-[color:var(--terminal-green)] font-bold select-none">$</span>
+        <span>./run --passions</span>
+      </div>
+      <p class="pl-4 mt-2 text-[color:var(--terminal-text)]">
+        <span class="text-[color:var(--terminal-comment)]">&gt;</span>
+        <span
+          id="typewriter"
+          class="text-[color:var(--terminal-green)] font-semibold"
+        ></span>
+      </p>
+
+      <div class="my-5 glow-underline"></div>
+
+      <!-- stats -->
+      <div class="flex items-start gap-2">
+        <span class="text-[color:var(--terminal-green)] font-bold select-none">$</span>
+        <span>cat stats.json</span>
+      </div>
+      <div class="pl-4 mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
+        {
+          stats.map((stat) => (
+            <div class="stat-card rounded-md border border-[color:var(--terminal-border)] bg-black/20 p-3 md:p-4">
+              <div class="flex items-baseline gap-0.5">
+                <span class="text-2xl md:text-3xl font-bold text-[color:var(--terminal-green)] counter" data-target={stat.value}>0</span>
+                <span class="text-xl font-bold text-[color:var(--terminal-green)]">{stat.suffix}</span>
+              </div>
+              <div class="mt-1 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[color:var(--terminal-muted)]">
+                {stat.label}
+              </div>
+            </div>
+          ))
         }
-      };
-      update();
-    };
+      </div>
 
-    // Intersection Observer para disparar la animación al verla
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            // Animación de subida del contenedor
-            el.classList.add("animate-fade-in-up");
+      <div class="my-6 glow-underline"></div>
 
-            // Iniciar conteo de números
-            const counter = el.querySelector(".counter");
-            if (counter) startCounter(counter);
-
-            observer.unobserve(el);
+      <!-- actions -->
+      <div class="flex items-start gap-2">
+        <span class="text-[color:var(--terminal-green)] font-bold select-none">$</span>
+        <span>ls ./actions</span>
+      </div>
+      <div class="pl-4 mt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <a
+          href="https://drive.google.com/drive/folders/1iy9-dpCE63PiNxx4-xOQoj8nf2VvCCsd?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cmd-btn cmd-btn-primary justify-center"
+        >
+          <span>./download_cv.sh</span>
+          <i class="hn hn-download-solid"></i>
+        </a>
+        <a href="#contact" class="cmd-btn justify-center">
+          <span>./contact.sh</span>
+          <span class="blink">_</span>
+        </a>
+        <div class="hidden md:block flex-1"></div>
+        <ul class="flex items-center gap-2">
+          {
+            socialLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[color:var(--terminal-border-strong)] text-[color:var(--terminal-muted)] transition-all hover:border-[color:var(--terminal-green-dim)] hover:text-[color:var(--terminal-green)] hover:bg-[color:var(--terminal-green-faint)]"
+                >
+                  <i class={link.icon}></i>
+                </a>
+              </li>
+            ))
           }
-        });
-      },
-      { threshold: 0.5 },
-    );
+        </ul>
+      </div>
 
-    document
-      .querySelectorAll(".animate-on-scroll")
-      .forEach((el) => observer.observe(el));
-  </script>
-
-  <style>
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-in-up {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-  </style>
-  <div class="flex-shrink-0 w-full flex justify-center items-center mt-4">
-    <a href="#about" class="text-center flex flex-col items-center gap-2">
-      <span>Acerca de mi</span>
-      <i class="hn hn-arrow-down-solid animate-bounceY"></i>
-    </a>
+      <!-- trailing cursor -->
+      <div class="mt-6 flex items-center gap-2 text-[color:var(--terminal-green)]">
+        <span class="font-bold select-none">$</span>
+        <span class="blink font-bold">_</span>
+      </div>
+    </div>
   </div>
+
+  <!-- Scroll hint -->
+  <a
+    href="#about"
+    class="mt-8 inline-flex flex-col items-center gap-1 text-xs text-[color:var(--terminal-muted)] transition-colors hover:text-[color:var(--terminal-green)]"
+  >
+    <span class="text-[color:var(--terminal-comment)]">// scroll para continuar</span>
+    <i class="hn hn-arrow-down-solid animate-bounce"></i>
+  </a>
 </main>
 
 <script>
@@ -171,17 +162,17 @@ import Badge from "../components/badges/Badge.astro";
   const setupTyped = () => {
     const target = document.querySelector("#typewriter");
     if (!target) return;
-
+    // @ts-ignore
     new Typed("#typewriter", {
       strings: [
-        "desarrollo web.",
-        "desarrollo móvil.",
-        "automatización con IA.",
-        "desarrollo software.",
+        "web_development.init()",
+        "mobile_apps.build()",
+        "ai_automation.run()",
+        "fullstack.ship()",
       ],
-      typeSpeed: 60,
-      backSpeed: 40,
-      backDelay: 2000,
+      typeSpeed: 55,
+      backSpeed: 35,
+      backDelay: 1800,
       loop: true,
       cursorChar: "_",
     });
@@ -191,56 +182,45 @@ import Badge from "../components/badges/Badge.astro";
   document.addEventListener("astro:after-swap", setupTyped);
 </script>
 
-<style>
-  @keyframes bounceY {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(10px);
-    }
-  }
+<script is:inline>
+  // Counter animation when in view
+  const startCounter = (el) => {
+    const target = parseInt(el.getAttribute("data-target"));
+    const duration = 1500;
+    const step = target / (duration / 16);
+    let current = 0;
+    const tick = () => {
+      current += step;
+      if (current < target) {
+        el.innerText = Math.floor(current).toString();
+        requestAnimationFrame(tick);
+      } else {
+        el.innerText = target.toString();
+      }
+    };
+    tick();
+  };
 
-  .button-hover {
-    position: relative;
-    overflow: hidden;
-  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const counter = entry.target.querySelector(".counter");
+          if (counter) startCounter(counter);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
 
-  .button-hover span {
-    transition: opacity 0.4s ease;
-  }
-
-  .button-hover i {
-    position: absolute;
-    left: 100%; /* empieza fuera del botón, a la derecha */
-    top: 50%;
-    transform: translateY(-50%); /* centrado vertical */
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 1.2em;
-  }
-
-  .button-hover:hover span {
-    opacity: 0;
-  }
-
-  .button-hover:hover i {
-    left: 50%; /* se mueve al centro */
-    transform: translate(-50%, -50%) scale(1.3); /* centrado + zoom */
-    z-index: 10;
-  }
-  .animate-bounceY {
-    animation: bounceY 1.5s ease-in-out infinite;
-  }
-</style>
+  document.querySelectorAll(".stat-card").forEach((el) => observer.observe(el));
+</script>
 
 <style is:global>
-  /* El punto clave es esta clase que genera Typed.js */
   .typed-cursor {
-    color: #07f9a2; /* Tu color verde menta */
-    font-size: 1.1em;
-    font-weight: bold;
-    /* Opcional: un efecto de neón */
+    color: var(--terminal-green);
+    font-weight: 700;
     text-shadow: 0 0 8px rgba(7, 249, 162, 0.6);
   }
 </style>

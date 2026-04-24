@@ -1,20 +1,19 @@
 ---
-import BentoInformation from '../components/bentos/bentoInformation.astro'
-import Technologies from '../components/Technologies.astro'
-import Skills from '../components/Skills.astro'
-import WorkExperience from '../sections/ExperienceSection.astro'
+import BentoInformation from '../components/bentos/bentoInformation.astro';
+import WorkExperience from '../sections/ExperienceSection.astro';
+import Technologies from '../components/Technologies.astro';
+import Skills from '../components/Skills.astro';
 ---
 
 <BentoInformation />
-<section id="experience" class="min-h-screen flex flex-col justify-center py-12 px-4 w-full">
+
+<section id="experience" class="py-20 md:py-28">
   <WorkExperience />
 </section>
-<!-- Sección centrada verticalmente -->
-<section id="technologies" class="min-h-screen flex flex-col justify-center py-12 px-4 w-full">
-  <div class="mx-auto w-full">
-    <Technologies />
-    <div class="mt-12">
+
+<section id="technologies" class="py-20 md:py-28">
+  <Technologies />
+  <div class="mt-20">
     <Skills />
-    </div>
   </div>
 </section>

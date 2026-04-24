@@ -2,28 +2,43 @@
 import Icons from './Icons.astro';
 
 const toolsData = [
-  { name: "Vercel", icon: "vercel"},
-  // { name: "Windsurf", icon: "windsurf"},
-  { name: "VS Code", icon: "vscode"},
-  // { name: "Opera", icon: "opera"},
-  { name: "pnpm", icon: "pnpm"},
-  { name: "Git", icon: "git" },
-  // { name: "GitHub", icon: "github" },
-  { name: "n8n", icon: "n8n"},
-  { name: "Figma", icon: "figma" },
-]
+  { name: "Vercel",  icon: "vercel",  role: "deploy" },
+  { name: "VS Code", icon: "vscode",  role: "editor" },
+  { name: "pnpm",    icon: "pnpm",    role: "pkg manager" },
+  { name: "Git",     icon: "git",     role: "version control" },
+  { name: "n8n",     icon: "n8n",     role: "automation" },
+  { name: "Figma",   icon: "figma",   role: "design" },
+];
 ---
 
-<section class="flex flex-col md:flex-row md:items-center justify-between w-[80%] md:w-[80%] lg:w-[60%] mx-auto gap-5">
-  <h2 class="font-bold text-4xl">Herramientas</h2>
-  <div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 cursor-default">
-      {toolsData.map(tool => (
-        <div class="p-5 rounded-lg flex flex-col items-center gap-2 hover:scale-105 transition-transform text-gray-400 hover:text-white">
-          <Icons name={tool.icon} class="w-8 h-8 text-[#07f9a2] fill-current" />
-          <span class="font-semibold">{tool.name}</span>
-        </div>
-      ))}
+<div class="w-[92%] md:w-[88%] lg:w-[72%] mx-auto">
+  <!-- Header -->
+  <header class="mb-8 flex items-end justify-between flex-wrap gap-4">
+    <div>
+      <p class="text-xs text-[color:var(--terminal-muted)] prompt-line">cat ~/.config/toolbelt.json</p>
+      <h2 class="font-sans text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-1 text-balance">
+        <span class="text-[color:var(--terminal-comment)]">{"//"}</span> toolbelt
+      </h2>
     </div>
+    <span class="hidden md:inline text-xs text-[color:var(--terminal-comment)]">
+      {toolsData.length} daily drivers
+    </span>
+  </header>
+
+  <!-- Grid of tools -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+    {
+      toolsData.map((tool) => (
+        <div class="term-card group p-4 flex flex-col items-center gap-2 text-center">
+          <div class="flex items-center justify-center h-10 w-10 rounded-md border border-[color:var(--terminal-border)] bg-black/20 text-[color:var(--terminal-green)] group-hover:bg-[color:var(--terminal-green-faint)] transition-colors">
+            <Icons name={tool.icon} class="h-5 w-5 fill-current" />
+          </div>
+          <span class="font-semibold text-sm text-[color:var(--terminal-text)]">{tool.name}</span>
+          <span class="text-[11px] text-[color:var(--terminal-comment)] lowercase">
+            <span class="text-[color:var(--terminal-green)]">→</span> {tool.role}
+          </span>
+        </div>
+      ))
+    }
   </div>
-</section>
+</div>

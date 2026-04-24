@@ -1,28 +1,27 @@
 ---
 import foto from "../../assets/Portafolio-foto.jpg";
-import LustreText from "../ui/LustreText";
 
 const estudios = [
   {
-    periodo: "marzo 2023 - marzo 2024",
-    titulo: "Desarrollo web Full Stack",
+    periodo: "mar 2023 - mar 2024",
+    titulo: "Desarrollo Web Full Stack",
     institucion: "UneWeb",
     url: "https://www.uneweb.edu.ve",
   },
   {
-    periodo: "octubre 2023 - agosto 2025",
+    periodo: "oct 2023 - ago 2025",
     titulo: "Habilidades de Inglés",
     institucion: "Instituto de Idiomas TCEP",
     url: "https://www.instagram.com/ctepven",
   },
   {
-    periodo: "julio 2025 - noviembre 2025",
+    periodo: "jul 2025 - nov 2025",
     titulo: "Desarrollo Web Full Stack",
     institucion: "Adakademy",
     url: "https://adakademy.com",
   },
   {
-    periodo: "febrero 2022 - actualidad",
+    periodo: "feb 2022 - actualidad",
     titulo: "Ingeniería de Sistemas",
     institucion: "Universidad Santa María",
     url: "https://usm.edu.ve",
@@ -30,171 +29,246 @@ const estudios = [
 ];
 
 const valores = [
-  { nombre: "Comunicación", icono: "hn hn-comments-solid" },
-  { nombre: "Paciencia", icono: "hn hn-seedlings-solid" },
-  { nombre: "Creatividad", icono: "hn hn-lightbulb-solid" },
+  { nombre: "communication", icono: "hn hn-comments-solid" },
+  { nombre: "patience",      icono: "hn hn-seedlings-solid" },
+  { nombre: "creativity",    icono: "hn hn-lightbulb-solid" },
 ];
 
-const bentoSections = [
-  {
-    id: "profile",
-    gridClasses: "md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-4",
-    title: "Luis Álvarez Franceschi",
-    type: "profile",
-  },
-  {
-    id: "estudios",
-    gridClasses: "md:col-start-4 md:col-end-6 md:row-start-1 md:row-end-6",
-    title: "Estudios y certificaciones",
-    icon: "hn hn-star-solid",
-    type: "timeline",
-  },
-  {
-    id: "valores",
-    gridClasses: "md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-4",
-    title: "Valores",
-    icon: "hn hn-bolt-solid",
-    type: "values",
-  },
-  {
-    id: "info",
-    gridClasses: "md:col-start-1 md:col-end-4 md:row-start-4 md:row-end-6",
-    title: "info",
-    icon: "hn hn-info-circle-solid",
-    content:
-      "Estudiante de Ingeniería de sistemas, con finalización estimada en febrero de 2027, me gusta el desarrollo de aplicaciones multiplataforma, páginas web y automatización con IA.",
-    type: "info",
-  },
+const tabs = [
+  { id: "profile",   file: "profile.md",    icon: "hn hn-user-solid" },
+  { id: "education", file: "education.log", icon: "hn hn-star-solid" },
+  { id: "values",    file: "values.json",   icon: "hn hn-bolt-solid" },
+  { id: "info",      file: "info.txt",      icon: "hn hn-info-circle-solid" },
 ];
 ---
 
-<section
-  id="about"
-  class="min-h-[100dvh] flex flex-col items-center justify-center"
->
-  <h2 class="w-[80%] md:w-[80%] lg:w-[60%] font-bold text-4xl">Sobre mí</h2>
-  <div class="grid bento-container grid-cols-1 sm:grid-cols-2 md:grid-cols-5 md:grid-rows-5 w-[80%] md:w-[80%] lg:w-[60%] mx-auto">
-    {
-      bentoSections.map((section) => (
-        <div
-          <div class={`bento-card group relative overflow-hidden bg-white/5 border border-white/10 hover:border-[#07f9a2]/20 shadow-[0_4px_10px_rgba(0,0,0,0.25)] p-4 m-1 rounded-xl hover:scale-102 duration-200 backdrop-blur-sm ${section.gridClasses} ${
-            section.type === "profile"
-              ? "flex flex-col justify-center items-center gap-4"
-              : section.type === "timeline"
-                ? "flex flex-col justify-center items-center gap-1 md:items-start"
-                : section.type === "values"
-                  ? "flex flex-col justify-center items-center gap-6 md:items-start"
-                  : "flex flex-col items-center gap-3 justify-center text-center md:text-left md:items-start"
-          }`}
-        >
-          <div
-            class="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-300 -z-1"
-            style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(7, 249, 162, 0.15), transparent 40%);"
-          />
+<section id="about" class="relative py-20 md:py-28">
+  <div class="w-[92%] md:w-[88%] lg:w-[72%] mx-auto">
+    <!-- Section header -->
+    <header class="mb-8 flex items-end justify-between flex-wrap gap-4">
+      <div>
+        <p class="text-xs text-[color:var(--terminal-muted)] prompt-line">cd ~/about &amp;&amp; cat .</p>
+        <h2 class="font-sans text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-1 text-balance">
+          <span class="text-[color:var(--terminal-comment)]">{"//"}</span> sobre_mi
+        </h2>
+      </div>
+      <span class="hidden md:inline text-xs text-[color:var(--terminal-comment)]">[4 archivos, 1 directorio]</span>
+    </header>
 
-          {section.type === "profile" && (
-            <>
-              <img
-                src={foto.src}
-                alt=""
-                class="aspect-square object-cover size-60 rounded-lg"
-              />
-              <h2 class="font-bold text-2xl md:text-lg lg:text-xl text-[#07f9a2] italic">
-                {section.title}
-              </h2>
-            </>
-          )}
-
-          {section.type === "timeline" && (
-            <>
-              <h2 class="text-xl font-bold flex items-center gap-2">
-                <i class={`${section.icon} text-[#07f9a2]`} /> {section.title}
-              </h2>
-              <div>
-                <ol class="relative border-s border-gray-200 dark:border-gray-700">
-                  {estudios.map((estudio, index) => (
-                    <li
-                      class={`group ms-4 ${index < estudios.length - 1 ? "mb-10" : ""}`}
-                    >
-                      <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 dark:bg-gray-700 group-hover:bg-[#07f9a2] transition-all duration-300" />
-                      <time class="mb-1 text-sm font-normal leading-none text-gray-500">
-                        {estudio.periodo}
-                      </time>
-                      <h3 class="text-lg font-semibold">{estudio.titulo}</h3>
-                      <a
-                        href={estudio.url}
-                        target="_blank"
-                        class="text-base font-normal text-gray-500 dark:text-gray-400 flex items-center gap-5"
-                      >
-                        {estudio.institucion}
-                        <i class="hn hn-external-link" />
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </>
-          )}
-
-          {section.type === "values" && (
-            <>
-              <h2 class="text-xl md:text-md lg:text-xl font-bold">
-                <i class={`${section.icon} text-[#07f9a2]`} />
-                {section.title}
-              </h2>
-              <ol class="text-md md:text-sm lg:text-md text-gray-400 flex flex-col items-center w-full gap-2 cursor-default">
-                {valores.map((valor) => (
-                  <li class="flex flex-col items-center gap-1 bg-black/20 md:bg-transparent lg:bg-black/20 w-1/2 md:w-full border border-white/15 md:border-transparent lg:border-white/15 rounded-xl p-1">
-                    <i class={valor.icono} />
-                    {valor.nombre}
-                  </li>
-                ))}
-              </ol>
-            </>
-          )}
-
-          {section.type === "info" && (
-            <>
-              <h2 class="text-xl font-bold flex justify-center items-center md:justify-start gap-2">
-                <i class={`${section.icon} text-[#07f9a2]`} />
-                {section.title}
-              </h2>
-              <p class="text-sm md:text-base ">{section.content}</p>
-              <a
-                href="#experience"
-                class="bg-black/20 border border-white/15 text-gray-400 px-3 py-1 text-sm rounded-xl transition-colors duration-200 flex items-center gap-2 hover:bg-white/5 hover:text-white z-15"
-              >
-                <i class="hn hn-ellipses-horizontal" />
-                <LustreText client:load text="Experiencia Laboral" />
-              </a>
-            </>
-          )}
+    <!-- Editor window -->
+    <div class="tw-window">
+      <!-- Title bar with tabs -->
+      <div class="tw-titlebar flex-col sm:flex-row !gap-0 !p-0 !items-stretch border-b border-[color:var(--terminal-border)]">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b sm:border-b-0 sm:border-r border-[color:var(--terminal-border)]">
+          <span class="tw-dot tw-dot-red"></span>
+          <span class="tw-dot tw-dot-yellow"></span>
+          <span class="tw-dot tw-dot-green"></span>
         </div>
-      ))
-    }
+        <div class="flex overflow-x-auto no-scrollbar" role="tablist">
+          {
+            tabs.map((tab, i) => (
+              <button
+                class={`about-tab flex items-center gap-2 whitespace-nowrap px-4 py-2.5 text-xs border-r border-[color:var(--terminal-border)] transition-colors ${
+                  i === 0 ? "is-active" : ""
+                }`}
+                data-tab={tab.id}
+                role="tab"
+              >
+                <i class={`${tab.icon} text-[color:var(--terminal-green)]`}></i>
+                <span>{tab.file}</span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Tab content area -->
+      <div class="grid grid-cols-[auto_1fr] min-h-[380px]">
+        <!-- Gutter with line numbers -->
+        <div class="hidden sm:flex flex-col items-end gap-0.5 px-3 py-5 text-[11px] text-[color:var(--terminal-comment)] select-none border-r border-[color:var(--terminal-border)] bg-black/15">
+          {Array.from({ length: 18 }).map((_, i) => <span>{String(i + 1).padStart(2, "0")}</span>)}
+        </div>
+
+        <!-- Panels -->
+        <div class="p-5 md:p-8 overflow-hidden">
+          <!-- PROFILE -->
+          <div data-panel="profile" class="about-panel">
+            <div class="flex flex-col md:flex-row items-start gap-6 md:gap-8">
+              <div class="relative shrink-0 ascii-corners">
+                <img
+                  src={foto.src}
+                  alt="Foto de Luis Álvarez"
+                  class="w-40 h-40 md:w-52 md:h-52 object-cover rounded-md grayscale-[0.2]"
+                />
+                <span class="absolute -top-2 -left-2 text-[color:var(--terminal-green)]">┌</span>
+                <span class="absolute -top-2 -right-2 text-[color:var(--terminal-green)]">┐</span>
+                <span class="absolute -bottom-2 -left-2 text-[color:var(--terminal-green)]">└</span>
+                <span class="absolute -bottom-2 -right-2 text-[color:var(--terminal-green)]">┘</span>
+              </div>
+              <div class="flex-1 text-sm md:text-[15px]">
+                <p class="ansi-comment"># profile.md</p>
+                <h3 class="font-sans font-bold text-2xl md:text-3xl mt-2 text-balance">
+                  Luis Álvarez <span class="text-[color:var(--terminal-green)]">Franceschi</span>
+                </h3>
+                <p class="mt-3 text-[color:var(--terminal-muted)] leading-relaxed">
+                  Desarrollador Full Stack &amp; Mobile, estudiante de Ingeniería de Sistemas.
+                  Construyo productos digitales escalables con foco en
+                  <span class="text-[color:var(--terminal-green)]">experiencia de usuario</span>,
+                  <span class="text-[color:var(--terminal-green)]">código limpio</span> y
+                  <span class="text-[color:var(--terminal-green)]">automatización con IA</span>.
+                </p>
+                <dl class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                  <div class="flex gap-2">
+                    <dt class="ansi-muted w-24">role</dt>
+                    <dd>Fullstack Dev</dd>
+                  </div>
+                  <div class="flex gap-2">
+                    <dt class="ansi-muted w-24">status</dt>
+                    <dd class="text-[color:var(--terminal-green)]">available</dd>
+                  </div>
+                  <div class="flex gap-2">
+                    <dt class="ansi-muted w-24">location</dt>
+                    <dd>Venezuela</dd>
+                  </div>
+                  <div class="flex gap-2">
+                    <dt class="ansi-muted w-24">since</dt>
+                    <dd>2022</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+          <div data-panel="education" class="about-panel hidden">
+            <p class="ansi-comment"># education.log (more recent on top)</p>
+            <ol class="mt-4 relative border-l border-[color:var(--terminal-border-strong)] ml-2">
+              {
+                estudios.slice().reverse().map((e, i) => (
+                  <li class="group pl-5 pb-6 last:pb-0 relative">
+                    <span class="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-[color:var(--terminal-bg)] border border-[color:var(--terminal-green-dim)] group-hover:bg-[color:var(--terminal-green)] transition-colors"></span>
+                    <time class="block text-[11px] uppercase tracking-widest text-[color:var(--terminal-comment)]">
+                      [{e.periodo}]
+                    </time>
+                    <h4 class="mt-1 font-sans text-lg font-semibold text-[color:var(--terminal-text)]">
+                      {e.titulo}
+                    </h4>
+                    <a
+                      href={e.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-1 inline-flex items-center gap-1.5 text-sm text-[color:var(--terminal-muted)] hover:text-[color:var(--terminal-green)]"
+                    >
+                      <span class="text-[color:var(--terminal-green)]">→</span>
+                      {e.institucion}
+                      <i class="hn hn-external-link text-xs"></i>
+                    </a>
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
+
+          <!-- VALUES -->
+          <div data-panel="values" class="about-panel hidden">
+            <p class="ansi-comment"># values.json</p>
+            <div class="mt-3 text-sm md:text-[15px] leading-loose font-mono">
+              <div><span class="ansi-muted">&#123;</span></div>
+              <div class="pl-4"><span class="ansi-green">"core_values"</span><span class="ansi-muted">:</span> <span class="ansi-muted">[</span></div>
+              {
+                valores.map((v, i) => (
+                  <div class="flex items-center gap-2 pl-8">
+                    <i class={`${v.icono} text-[color:var(--terminal-green)]`}></i>
+                    <span class="ansi-yellow">"{v.nombre}"</span>{i < valores.length - 1 ? <span class="ansi-muted">,</span> : null}
+                  </div>
+                ))
+              }
+              <div class="pl-4"><span class="ansi-muted">]</span><span class="ansi-muted">,</span></div>
+              <div class="pl-4"><span class="ansi-green">"mindset"</span><span class="ansi-muted">:</span> <span class="ansi-yellow">"learn &#8594; build &#8594; ship"</span></div>
+              <div><span class="ansi-muted">&#125;</span></div>
+            </div>
+          </div>
+
+          <!-- INFO -->
+          <div data-panel="info" class="about-panel hidden">
+            <p class="ansi-comment"># info.txt</p>
+            <p class="mt-3 text-[color:var(--terminal-text)] leading-relaxed">
+              Estudiante de Ingeniería de Sistemas, con finalización estimada en
+              <span class="text-[color:var(--terminal-green)]">febrero de 2027</span>.
+              Me apasiona el desarrollo de aplicaciones multiplataforma, páginas web
+              y la automatización con inteligencia artificial.
+            </p>
+            <div class="mt-5 grid sm:grid-cols-3 gap-3">
+              <div class="term-card p-4">
+                <div class="text-[11px] uppercase tracking-widest text-[color:var(--terminal-comment)]">focus</div>
+                <div class="mt-1 font-semibold text-[color:var(--terminal-green)]">Mobile &amp; Web</div>
+              </div>
+              <div class="term-card p-4">
+                <div class="text-[11px] uppercase tracking-widest text-[color:var(--terminal-comment)]">stack</div>
+                <div class="mt-1 font-semibold text-[color:var(--terminal-green)]">React · .NET · Flutter</div>
+              </div>
+              <div class="term-card p-4">
+                <div class="text-[11px] uppercase tracking-widest text-[color:var(--terminal-comment)]">extras</div>
+                <div class="mt-1 font-semibold text-[color:var(--terminal-green)]">AI Automation</div>
+              </div>
+            </div>
+            <a
+              href="#experience"
+              class="mt-6 inline-flex items-center gap-2 cmd-btn"
+            >
+              <span>cat experience.log</span>
+              <i class="hn hn-angle-down"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status footer -->
+      <div class="flex items-center justify-between gap-3 px-4 py-2 border-t border-[color:var(--terminal-border)] text-[11px] text-[color:var(--terminal-comment)]">
+        <span>UTF-8 · LF · <span class="text-[color:var(--terminal-green)]">● saved</span></span>
+        <span class="hidden sm:inline">Ln 1, Col 1 · Spaces: 2</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<script>
-  const handleMouseMove = (e: Event) => {
-    // Forzamos a que TypeScript trate el evento como MouseEvent
-    const mouseEvent = e as MouseEvent;
-    const cards = document.querySelectorAll(".bento-card");
+<script is:inline>
+  const tabs = document.querySelectorAll(".about-tab");
+  const panels = document.querySelectorAll(".about-panel");
 
-    for (const card of cards) {
-      const rect = card.getBoundingClientRect();
-      const x = mouseEvent.clientX - rect.left;
-      const y = mouseEvent.clientY - rect.top;
-
-      // Usamos (card as HTMLElement) para que acepte .style
-      (card as HTMLElement).style.setProperty("--mouse-x", `${x}px`);
-      (card as HTMLElement).style.setProperty("--mouse-y", `${y}px`);
-    }
-  };
-
-  // Seleccionamos el contenedor y verificamos que no sea nulo antes de añadir el listener
-  const container = document.querySelector(".bento-container");
-  if (container) {
-    container.addEventListener("mousemove", handleMouseMove);
-  }
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const id = tab.getAttribute("data-tab");
+      tabs.forEach((t) => t.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      panels.forEach((p) => {
+        if (p.getAttribute("data-panel") === id) {
+          p.classList.remove("hidden");
+          p.classList.add("animate-fade-up");
+        } else {
+          p.classList.add("hidden");
+          p.classList.remove("animate-fade-up");
+        }
+      });
+    });
+  });
 </script>
+
+<style>
+  .about-tab {
+    color: var(--terminal-muted);
+    background: transparent;
+    border-top: 2px solid transparent;
+  }
+  .about-tab:hover {
+    color: var(--terminal-text);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .about-tab.is-active {
+    color: var(--terminal-text);
+    background: var(--terminal-surface-hover);
+    border-top-color: var(--terminal-green);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+</style>
