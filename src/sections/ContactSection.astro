@@ -1,7 +1,24 @@
 ---
 import SocialMedia from "../components/SocialMedia.astro";
+import GlobeWireframe from '@/components/ui/globe-wireframe';
+import Footer from "../components/footer.astro";
+
 ---
-<section id="contact" class="relative min-h-[100dvh] flex flex-col items-center justify-center py-12">
+<section id="contact" class="relative min-h-[100dvh] flex flex-col items-center justify-center pt-12">
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <GlobeWireframe 
+      client:load 
+      className="w-full h-full opacity-10" 
+      enableInteraction={false}
+      rotationSpeed={15000}
+      strokeColor="#07f9a2"        
+  sphereOutlineColor="#07f9a2"   
+  graticuleColor="#07f9a2"       
+  graticuleOpacity={0.15}
+  autoRotateSpeed={0.05}
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#05050a] via-transparent to-transparent"></div>
+  </div>
   <div class="bento-container mx-auto w-[90%] md:w-[80%] lg:w-full z-10 py-5">
     <form id="contact-form" class="parent relative overflow-hidden py-5">
       
@@ -68,6 +85,7 @@ import SocialMedia from "../components/SocialMedia.astro";
       </div>
     </form>
   </div>
+  <Footer />
 </section>
 
 <script>
